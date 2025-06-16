@@ -438,3 +438,7 @@ trix-editor .attachment__metadata {
   padding: 0 !important;
   max-width: 100% !important;
 }
+
+trix-toolbar {
+    background-color: oklch(0.98 0 0)
+}

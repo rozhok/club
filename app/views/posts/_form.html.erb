@@ -1,12 +1,23 @@
-<%= form_with model: @post do |f| %>
-  <div class="field">
-    <%= f.label :content %>
-    <%= f.rich_textarea :content %>
+<%= form_with model: @post, class: "w-full space-y-6 p-6 bg-base-200 rounded-lg shadow-lg" do |f| %>
+  <h2 class="text-xl font-bold"><%= @post.created_at ? "Редагувати допис" : "Новий допис" %></h2>
+  
+  <div class="form-control w-full">
+    <%= f.label :content, class: "label" do %>
+      <span class="label-text">Вміст</span>
+    <% end %>
+    <div class="bg-base-100 rounded-lg"> <!-- Increased height -->
+      <%= f.rich_textarea :content, class: "w-full min-w-full h-full" %>
+    </div>
   </div>
 
-  <% if @post.created_at %>
-    <%= f.submit "Зберегти", class: "btn btn-primary btn-wide" %>
-  <% else %>
-    <%= f.submit "Опублікувати", class: "btn btn-primary" %>
-  <% end %>
+  <div class="form-control mt-6">
+    <% if @post.created_at %>
+      <%= f.submit "Зберегти", class: "btn btn-primary btn-wide" %>
+    <% else %>
+      <div class="flex justify-between items-center">
+        <%= f.submit "Опублікувати", class: "btn btn-primary" %>
+        <%= link_to "Скасувати", :back, class: "btn btn-ghost" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

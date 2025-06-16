@@ -1,0 +1,8 @@
+uk:
+  activerecord:
+    models:
+      user: Користувач
+    attributes:
+      session:
+        email: Е-пошта
+        password: Пароль
