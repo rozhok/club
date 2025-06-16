@@ -24,6 +24,8 @@
 
   <%= button_to "Log out", Current.session, method: :delete %>
 
+  <%= link_to "Create post", new_post_path, class: "btn" %>
+
 <% else %>
 
   <%= link_to "Registration", sign_up_path %>

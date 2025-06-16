@@ -1,0 +1,4 @@
+<%= link_to "Додати пост", new_post_path, class: "btn" %>
+<% @posts.each do |post| %>
+  <%= post.content %>
+<% end %>

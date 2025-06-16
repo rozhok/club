@@ -1,0 +1,12 @@
+<%= form_with model: @post do |f| %>
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.rich_textarea :content %>
+  </div>
+
+  <% if @post.created_at %>
+    <%= f.submit "Зберегти", class: "btn btn-primary btn-wide" %>
+  <% else %>
+    <%= f.submit "Опублікувати", class: "btn btn-primary" %>
+  <% end %>
+<% end %>

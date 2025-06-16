@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "pages#home"
+  get "up" => "rails/health#show", as: :rails_health_check
+  root "posts#index"
 
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
@@ -16,5 +17,5 @@ Rails.application.routes.draw do
     resource :password_reset, only: [:new, :edit, :create, :update]
   end
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :posts
 end
