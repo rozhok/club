@@ -1,5 +1,116 @@
-# Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+plugins:
+  - rubocop-performance
+  - rubocop-rails
 
-Layout/SpaceInsideArrayLiteralBrackets:
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**'
+    - 'test/**'
+    - 'log/**'
+    - 'public/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'config/initializers/*'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'infra/**/*'
+    - 'storage/**/*'
+    - 'coverage/**/*'
+    - 'tmp/**/*'
+    - 'yarn.lock'
+    - 'Gemfile.lock'
+    - '*.iml'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+Style/Documentation:
+  Enabled: false
+
+Layout/CommentIndentation:
+  Enabled: false
+
+Style/SymbolProc:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+Layout/LineLength:
+  Max: 280
+
+Metrics/MethodLength:
+  Max: 15
+
+Layout/SpaceBeforeBlockBraces:
+  SupportedStyles:
+    - space
+    - no_space
+
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: space
+  SpaceBeforeBlockParameters: true
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: space
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/DateTime:
+  Enabled: false
+
+Style/ConditionalAssignment:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Naming/MethodParameterName:
+  Enabled: true
+  MinNameLength: 2
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Rails/EnvironmentVariableAccess:
+  Enabled: false
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+
+Style/GuardClause:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false
+
+Style/EmptyMethod:
   Enabled: false

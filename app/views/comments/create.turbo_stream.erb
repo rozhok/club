@@ -1,0 +1,11 @@
+<%= turbo_stream.prepend dom_id(@parent || @post, :comments) do %>
+  <%= turbo_frame_tag dom_id(@comment, :wrapper), src: comment_path(@comment, post_id: @post.id, parent_id: @parent&.id) %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@parent || @post, :new_comment) do %>
+  <% if @parent %>
+    <%= turbo_frame_tag dom_id(@parent, :new_comment) %>
+  <% else %>
+    <%= turbo_frame_tag dom_id(@post, :new_comment), src: new_comment_path(post_id: @post.id) %>
+  <% end %>
+<% end %>

@@ -1,0 +1,3 @@
+<%= turbo_stream.replace @comment do %>
+  <%= turbo_frame_tag @comment, src: comment_path(@comment, post_id: @post.id) %>
+<% end %>

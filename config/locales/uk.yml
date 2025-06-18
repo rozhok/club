@@ -6,3 +6,9 @@ uk:
       session:
         email: Е-пошта
         password: Пароль
+    errors:
+      models:
+        user:
+          attributes:
+            password_challenge:
+              invalid: Невірний пароль

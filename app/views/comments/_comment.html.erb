@@ -1,0 +1,9 @@
+<%= turbo_frame_tag comment do %>
+  <%= comment.content %>
+
+  <div style="display: flex; flex-direction: row">
+    <%= link_to "Edit", edit_comment_path(comment, post_id: post.id), class: "btn" %>
+    <%= button_to "Destroy", comment, method: :delete, class: "btn" %>
+    <%= link_to "Reply", new_comment_path(parent_id: comment.id, post_id: post.id), data: { turbo_frame: dom_id(comment, :new_comment) }, class: "btn" %>
+  </div>
+<% end %>

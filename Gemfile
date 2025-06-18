@@ -21,8 +21,15 @@ gem "image_processing"
 
 group :development, :test do
   gem "brakeman", require: false
-  gem "rubocop-rails-omakase", require: false
   gem "authentication-zero", require: false
+end
+
+group :test, :rubocop do
+  gem "rubocop"
+  gem "rubocop-migration"
+  gem "rubocop-minitest"
+  gem "rubocop-performance"
+  gem "rubocop-rails_config"
 end
 
 group :development do

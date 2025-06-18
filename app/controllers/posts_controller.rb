@@ -3,8 +3,17 @@ class PostsController < ApplicationController
     @posts = Post.all.with_rich_text_content_and_embeds
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @comments = @post.comments.where(parent_id: nil).includes(:user, :replies)
+  end
+
   def new
     @post = Post.new
+  end
+
+  def edit
+    @post = Post.find(params[:id])
   end
 
   def create
@@ -15,14 +24,6 @@ class PostsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @post = Post.find(params[:id])
-  end
-
-  def edit
-    @post = Post.find(params[:id])
   end
 
   def update

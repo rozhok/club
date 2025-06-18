@@ -1,0 +1,13 @@
+<%= turbo_frame_tag dom_id(@comment, :wrapper) do %>
+  <div class="<%= 'px-2' if @parent %>">
+    <%= render @comment, parent: @parent, post: @post %>
+
+    <%= turbo_frame_tag dom_id(@comment, :new_comment) %>
+
+    <%= turbo_frame_tag dom_id(@comment, :comments) do %>
+      <% @comment.comments.each do |comment| %>
+        <%= turbo_frame_tag dom_id(comment, :wrapper), src: comment_path(comment, post_id: @post.id, parent_id: @comment.id) %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
