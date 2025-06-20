@@ -4,7 +4,8 @@
   <div class="space-y-4">
     <% @posts.each do |post| %>
       <div class="p-4 border rounded-lg bg-base-200">
-        <article>
+        <article class="prose">
+          <h1><%= link_to post.title, post_path(post) %></h1>
           <%= post.content %>
         </article>
       </div>

@@ -114,3 +114,6 @@ Rails/I18nLocaleTexts:
 
 Style/EmptyMethod:
   Enabled: false
+
+Style/SymbolArray:
+  Enabled: false

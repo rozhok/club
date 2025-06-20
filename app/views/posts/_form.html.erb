@@ -2,10 +2,10 @@
   <h2 class="text-xl font-bold"><%= @post.created_at ? "Редагувати допис" : "Новий допис" %></h2>
   
   <div class="form-control w-full">
-    <%= f.label :content, class: "label" do %>
-      <span class="label-text">Вміст</span>
-    <% end %>
-    <div class="bg-base-100 rounded-lg"> <!-- Increased height -->
+    <div class="bg-base-100 rounded-lg">
+      <%= f.text_field :title, class: "w-full min-w-full" %>
+    </div>
+    <div class="bg-base-100 rounded-lg">
       <%= f.rich_textarea :content, class: "w-full min-w-full h-full" %>
     </div>
   </div>

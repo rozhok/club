@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   before_action :set_parent, only: %i[show new create]
 
   def index
-    @comments = @post.comments.where(parent_id: nil)
+    @comments = @post.comments.with_rich_text_content_and_embeds.where(parent_id: nil)
   end
 
   def show
