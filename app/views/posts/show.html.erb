@@ -1,35 +1,28 @@
-<div class="container mx-auto px-4 py-8 max-w-4xl">
-  <!-- Post content section -->
-  <div class="card bg-base-100 shadow-xl mb-8">
-    <div class="card-body prose max-w-none">
-      <h2 class="card-title text-2xl font-bold mb-6">
-        <%= @post.title %>
-      </h2>
+<div class="container mx-auto px-4 py-8 max-w-3/4">
+  <div class="card card-border shadow-sm mb-8">
+    <div class="card-body prose lg:prose-xl text-black">
+      <h2 class="card-title text-xl font-bold mb-6"><%= @post.title %></h2>
       <%= @post.content %>
     </div>
 
     <div class="card-actions justify-end p-4">
-      <%= link_to "Редагувати", edit_post_path(@post.id), class: "btn btn-primary" %>
+      <%= link_to "📝Редагувати", edit_post_path(@post.id), class: "btn btn-neutral btn-outline" %>
     </div>
   </div>
 
-  <!-- Comments section -->
-  <div class="card bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title text-2xl font-bold mb-6">Comments</h2>
+  <h2 class="text-2xl mb-8">Коментарі👇</h2>
 
-      <!-- Comment form -->
+  <div class="card card-border shadow-sm">
+    <div class="card-body">
       <div class="comment-form mb-8">
         <%= turbo_frame_tag dom_id(@post, :new_comment), src: new_comment_path(post_id: @post.id) %>
       </div>
-
-      <!-- Divider -->
-      <div class="divider"></div>
-
-      <!-- Comments list -->
-      <div class="comments-list space-y-6">
-        <%= turbo_frame_tag dom_id(@post, :comments), src: comments_path(post_id: @post.id) %>
-      </div>
     </div>
   </div>
+
+  <!-- Comments list -->
+  <div class="comments-list space-y-6">
+    <%= turbo_frame_tag dom_id(@post, :comments), src: comments_path(post_id: @post.id) %>
+  </div>
+
 </div>

@@ -1,23 +1,21 @@
-<%= form_with model: @post, class: "w-full space-y-6 p-6 bg-base-200 rounded-lg shadow-lg" do |f| %>
-  <h2 class="text-xl font-bold"><%= @post.created_at ? "Редагувати допис" : "Новий допис" %></h2>
-  
-  <div class="form-control w-full">
-    <div class="bg-base-100 rounded-lg">
-      <%= f.text_field :title, class: "w-full min-w-full" %>
-    </div>
-    <div class="bg-base-100 rounded-lg">
-      <%= f.rich_textarea :content, class: "w-full min-w-full h-full" %>
-    </div>
-  </div>
-
-  <div class="form-control mt-6">
-    <% if @post.created_at %>
-      <%= f.submit "Зберегти", class: "btn btn-primary btn-wide" %>
-    <% else %>
-      <div class="flex justify-between items-center">
-        <%= f.submit "Опублікувати", class: "btn btn-primary" %>
-        <%= link_to "Скасувати", :back, class: "btn btn-ghost" %>
+<div class="container mx-auto px-4 py-8 max-w-3/4">
+  <%= form_with model: @post do |f| %>
+    <div class="card card-border shadow-sm text-black">
+      <div class="card-body">
+        <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
+        <%= f.rich_textarea :content, class: "w-full min-w-full h-full prose prose-xl text-black" %>
       </div>
-    <% end %>
-  </div>
-<% end %>
+      <div class="card-actions justify-end p-4">
+        <% if @post.created_at %>
+          <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
+          <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
+        <% else %>
+          <div class="flex justify-between items-center">
+            <%= f.submit "✅Опублікувати", class: "btn btn-neutral btn-outline" %>
+            <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

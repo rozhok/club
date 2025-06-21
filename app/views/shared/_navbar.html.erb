@@ -1,0 +1,12 @@
+<div class="navbar bg-base-100 shadow-sm">
+  <div class="navbar-start">
+    <%= link_to "Ріжок🍦Клуб", root_path, class: "btn btn-ghost text-xl" %>
+  </div>
+  <div class="navbar-end">
+    <% if Current.user.present? %>
+      <%= link_to "✍️Написати", new_post_path, class: "btn btn-neutral btn-outline" %>
+    <% else %>
+      <%= link_to "Вхід", sign_in_path, class: "btn btn-neutral btn-outline" %>
+    <% end %>
+  </div>
+</div>
