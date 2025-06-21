@@ -5,24 +5,16 @@
       <%= @post.content %>
     </div>
 
-    <div class="card-actions justify-end p-4">
+    <div class="card-actions justify-end p-4 pt-0 pr-6">
       <%= link_to "📝Редагувати", edit_post_path(@post.id), class: "btn btn-neutral btn-outline" %>
     </div>
   </div>
 
   <h2 class="text-2xl mb-8">Коментарі👇</h2>
 
-  <div class="card card-border shadow-sm">
-    <div class="card-body">
-      <div class="comment-form mb-8">
-        <%= turbo_frame_tag dom_id(@post, :new_comment), src: new_comment_path(post_id: @post.id) %>
-      </div>
-    </div>
-  </div>
+  <%= turbo_frame_tag dom_id(@post, :new_comment), src: new_comment_path(post_id: @post.id) %>
 
-  <!-- Comments list -->
-  <div class="comments-list space-y-6">
+  <div class="space-y-6">
     <%= turbo_frame_tag dom_id(@post, :comments), src: comments_path(post_id: @post.id) %>
   </div>
-
 </div>

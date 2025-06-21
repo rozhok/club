@@ -1,18 +1,19 @@
-<%= form_with(model: comment) do |form| %>
+<%= form_with(model: comment) do |f| %>
   <%= hidden_field_tag :post_id, post.id %>
   <%= hidden_field_tag :parent_id, local_assigns[:parent]&.id %>
+  <div class="card card-border shadow-sm text-black">
+    <div class="card-body pb-2">
+      <%= f.rich_textarea :content, id: "comment_#{local_assigns[:parent]&.id}_content", class: "w-full min-w-full h-full prose prose-xl text-black" %>
+    </div>
+    <div class="card-actions justify-end p-4 pt-0 pr-6">
+      <% target = local_assigns[:parent] || comment %>
 
-  <div>
-    <%= form.rich_text_area :content, id: "comment_#{local_assigns[:parent]&.id}_content" %>
-  </div>
-
-  <div>
-    <% target = local_assigns[:parent] || comment %>
-    <% if target&.persisted? %>
-      <%= form.submit "Зберегти", class: "btn" %>
-      <%= link_to "Скасувати", comment_path(target, post_id: post.id) %>
-    <% else %>
-      <%= form.submit "Додати", class: "btn" %>
-    <% end %>
+      <% if target&.persisted? %>
+        <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
+        <%= link_to "❌Скасувати", comment_path(target, post_id: post.id), class: "btn btn-neutral btn-outline" %>
+      <% else %>
+        <%= f.submit "✅Додати", class: "btn btn-neutral btn-outline" %>
+      <% end %>
+    </div>
   </div>
 <% end %>
