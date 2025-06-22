@@ -1,14 +1,14 @@
 <%= form_with(model: comment) do |f| %>
   <%= hidden_field_tag :post_id, post.id %>
   <%= hidden_field_tag :parent_id, local_assigns[:parent]&.id %>
-  <div class="card card-border shadow-sm text-black">
-    <div class="card-body pb-2">
+  <div class="card card-border shadow-sm text-black mt-4">
+    <div class="card-body pb-2 pr-6">
       <%= f.rich_textarea :content, id: "comment_#{local_assigns[:parent]&.id}_content", class: "w-full min-w-full h-full prose prose-xl text-black" %>
     </div>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
       <% target = local_assigns[:parent] || comment %>
 
-      <% if target&.persisted? %>
+      <% if target&.persisted? && local_assigns[:parent].nil? %>
         <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
         <%= link_to "❌Скасувати", comment_path(target, post_id: post.id), class: "btn btn-neutral btn-outline" %>
       <% else %>

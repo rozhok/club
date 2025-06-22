@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(@comment, :wrapper) do %>
-  <div class="<%= 'px-2' if @parent %>">
+  <div class="<%= 'pl-8' if @parent %>">
     <%= render @comment, parent: @parent, post: @post %>
 
     <%= turbo_frame_tag dom_id(@comment, :new_comment) %>
