@@ -1,0 +1,18 @@
+<div class="container mx-auto px-4 py-8 max-w-3/4">
+  <%= form_with model: @user do |f| %>
+    <div class="card card-border shadow-sm text-black">
+      <div class="card-body">
+        <%= f.text_field :username, class: "w-full min-w-full input input-xl" %>
+        <%= f.text_field :name, class: "w-full min-w-full input input-xl" %>
+        <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
+        <%= f.text_field :company, class: "w-full min-w-full input input-xl" %>
+        <%= f.text_field :location, class: "w-full min-w-full input input-xl" %>
+        <%= f.rich_textarea :contacts, class: "w-full min-w-full h-full prose prose-xl text-black" %>
+      </div>
+      <div class="card-actions justify-end p-4 pt-0 pr-6">
+        <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
+        <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
+      </div>
+    </div>
+  <% end %>
+</div>

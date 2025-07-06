@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 
+  get "profile", to: "users#edit"
+  post "profile", to: "users#update"
+
   resources :sessions, only: [:index, :show, :destroy]
   resource :password, only: [:edit, :update]
 
@@ -19,4 +22,5 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :comments
+  resources :users, only: [:show]
 end

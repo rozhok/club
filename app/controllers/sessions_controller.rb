@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
       redirect_to root_path, notice: "Signed in successfully"
     else
-      redirect_to sign_in_path(email_hint: params[:email]), alert: "That email or password is incorrect"
+      redirect_to sign_in_path(email_hint: params[:email]), alert: "Невірний пароль або пошта🤷‍♂️"
     end
   end
 

@@ -1,12 +1,3 @@
-<% if notice.present? %>
-  <div class="alert alert-success shadow-lg mb-4">
-    <div>
-      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-      <span><%= notice %></span>
-    </div>
-  </div>
-<% end %>
-
 <% if alert.present? %>
   <div class="alert alert-error shadow-lg mb-4">
     <div>
@@ -16,39 +7,50 @@
   </div>
 <% end %>
 
-<div class="max-w-md mx-auto my-8 p-6 bg-base-200 rounded-lg shadow-lg">
+<div class="max-w-md mx-auto my-8 p-6 rounded-lg shadow-sm">
   <h1 class="text-2xl font-bold text-center mb-6">Реєстрація</h1>
 
   <%= form_with(url: sign_up_path, class: "space-y-4") do |form| %>
     <div class="form-control">
       <%= form.label :email, class: "label" do %>
-        <span class="label-text">Е-пошта</span>
+        <span class="label-text">Пошта</span>
       <% end %>
-      <%= form.email_field :email, required: true, autofocus: true, autocomplete: "email", class: "input input-bordered w-full" %>
+      <%= form.email_field :email, required: true, autofocus: true, autocomplete: "email", class: "input input-lg input-bordered w-full" %>
     </div>
 
     <div class="form-control">
       <%= form.label :password, class: "label" do %>
         <span class="label-text">Пароль</span>
       <% end %>
-      <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-bordered w-full" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-lg input-bordered w-full" %>
     </div>
 
     <div class="form-control">
       <%= form.label :password_confirmation, "Confirm Password", class: "label" do %>
         <span class="label-text">Повторіть пароль</span>
       <% end %>
-      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "input input-bordered w-full" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "input input-lg input-bordered w-full" %>
     </div>
 
+    <% if alert.present? %>
+      <div class="form-control">
+        <div role="alert" class="alert alert-error alert-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span><%= alert %></span>
+        </div>
+      </div>
+    <% end %>
+
     <div class="form-control mt-6">
-      <%= form.submit "Sign up", class: "btn btn-primary w-full" %>
+      <%= form.submit "Зарєеструватись", class: "btn btn-primary btn-lg w-full" %>
     </div>
   <% end %>
 
   <div class="divider">або</div>
 
   <div class="text-center text-sm mt-4">
-    Зареєстровані? <%= link_to "Вхід", sign_in_path, class: "link link-hover" %>
+    Зареєстровані? <%= link_to "Вхід", sign_in_path, class: "link" %>
   </div>
 </div>

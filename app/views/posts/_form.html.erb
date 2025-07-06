@@ -10,10 +10,8 @@
           <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
           <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
         <% else %>
-          <div class="flex justify-between items-center">
-            <%= f.submit "✅Опублікувати", class: "btn btn-neutral btn-outline" %>
-            <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
-          </div>
+          <%= f.submit "✅Опублікувати", class: "btn btn-neutral btn-outline" %>
+          <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
         <% end %>
       </div>
     </div>
