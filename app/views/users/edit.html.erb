@@ -1,13 +1,46 @@
 <div class="container mx-auto px-4 py-8 max-w-3/4">
+  <% if @user.newcomer? %>
+    <article class="prose text-black">
+      Заповни інформацію про себе — контакти, посаду
+    </article>
+  <% %>
+  <% end %>
   <%= form_with model: @user do |f| %>
     <div class="card card-border shadow-sm text-black">
       <div class="card-body">
-        <%= f.text_field :username, class: "w-full min-w-full input input-xl" %>
-        <%= f.text_field :name, class: "w-full min-w-full input input-xl" %>
-        <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
-        <%= f.text_field :company, class: "w-full min-w-full input input-xl" %>
-        <%= f.text_field :location, class: "w-full min-w-full input input-xl" %>
-        <%= f.rich_textarea :contacts, class: "w-full min-w-full h-full prose prose-xl text-black" %>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Юзернейм</legend>
+          <%= f.text_field :username, class: "w-full min-w-full input input-xl" %>
+          <p class="label">@rozhok</p>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Ім'я</legend>
+          <%= f.text_field :name, class: "w-full min-w-full input input-xl" %>
+          <p class="label">Як вас звати</p>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Посада</legend>
+          <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
+          <p class="label">Ким працюєте?</p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Компанія</legend>
+          <%= f.text_field :company, class: "w-full min-w-full input input-xl" %>
+          <p class="label">Де працюєте?</p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Де знаходитесь</legend>
+          <%= f.text_field :location, class: "w-full min-w-full input input-xl" %>
+          <p class="label">Звідки ви?</p>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Як з вами зв'язатися</legend>
+          <%= f.rich_textarea :contacts, class: "w-full min-w-full h-full prose prose-xl text-black" %>
+          <p class="label">Месенджери, соціальні мережі</p>
+        </fieldset>
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>

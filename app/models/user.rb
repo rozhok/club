@@ -3,10 +3,6 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_rich_text :contacts
 
-  generates_token_for :email_verification, expires_in: 2.days do
-    email
-  end
-
   generates_token_for :password_reset, expires_in: 20.minutes do
     password_salt.last(10)
   end
@@ -18,11 +14,11 @@ class User < ApplicationRecord
 
   normalizes :email, with: -> { it.strip.downcase }
 
-  before_validation if: :email_changed?, on: :update do
-    self.verified = false
-  end
-
   after_update if: :password_digest_previously_changed? do
     sessions.where.not(id: Current.session).delete_all
+  end
+
+  def newcomer?
+    role == "user_new"
   end
 end

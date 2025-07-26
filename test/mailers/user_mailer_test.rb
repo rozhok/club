@@ -10,10 +10,4 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal "Reset your password", mail.subject
     assert_equal [@user.email], mail.to
   end
-
-  test "email_verification" do
-    mail = UserMailer.with(user: @user).email_verification
-    assert_equal "Verify your email", mail.subject
-    assert_equal [@user.email], mail.to
-  end
 end

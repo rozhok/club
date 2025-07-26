@@ -1,4 +1,3 @@
 lazaro_nixon:
   email: lazaronixon@hotmail.com
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
-  verified: true
