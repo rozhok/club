@@ -43,7 +43,7 @@ Layout/LineLength:
   Max: 280
 
 Metrics/MethodLength:
-  Max: 15
+  Enabled: false
 
 Layout/SpaceBeforeBlockBraces:
   SupportedStyles:

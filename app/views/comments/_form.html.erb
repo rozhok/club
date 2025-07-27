@@ -1,16 +1,12 @@
-<%= form_with(model: comment) do |f| %>
-  <%= hidden_field_tag :post_id, post.id %>
-  <%= hidden_field_tag :parent_id, local_assigns[:parent]&.id %>
+<%= form_with(model: [post, comment]) do |f| %>
   <div class="card card-border shadow-sm text-black mt-4">
     <div class="card-body pb-2 pr-6">
-      <%= f.rich_textarea :content, id: "comment_#{local_assigns[:parent]&.id}_content", class: "w-full min-w-full h-full prose prose-xl text-black" %>
+      <%= rhino_editor_for(f, :content, id: "post_#{post.id}_comment_#{comment.id}") %>
     </div>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
-      <% target = local_assigns[:parent] || comment %>
-
-      <% if target&.persisted? && local_assigns[:parent].nil? %>
+      <% if comment.persisted? %>
         <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
-        <%= link_to "❌Скасувати", comment_path(target, post_id: post.id), class: "btn btn-neutral btn-outline" %>
+        <%#= link_to "❌Скасувати", comment_path(target, post_id: post.id), class: "btn btn-neutral btn-outline" %>
       <% else %>
         <%= f.submit "✅Додати", class: "btn btn-neutral btn-outline" %>
       <% end %>

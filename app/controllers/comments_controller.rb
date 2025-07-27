@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_post
-  before_action :set_comment, only: %i[show edit update destroy]
-  before_action :set_parent, only: %i[show new create]
+  # before_action :set_post
+  # before_action :set_comment, only: %i[show edit update destroy]
+  # before_action :set_parent, only: %i[show new create]
 
   def index
     @comments = @post.comments.with_rich_text_content_and_embeds.where(parent_id: nil)
@@ -15,16 +15,18 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   def create
-    @comment = @post.comments.new(comment_params)
-    @comment.user = Current.user
-    @comment.parent = @parent
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.create(comment_params)
+    @comment.user_id = Current.user.id
     @comment.save
   end
 
   def update
+    @comment = Comment.find(params[:id])
     @comment.update(comment_params)
   end
 
@@ -34,6 +36,7 @@ class CommentsController < ApplicationController
 
   def reply
     @reply = @comment.replies.new(comment_params)
+    @reply.level = @comment.level + 1
     @reply.post = @comment.post
     @reply.user = Current.user
 
@@ -46,17 +49,17 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_post
-    @post = Post.find_by(id: params[:post_id])
-  end
-
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
-
-  def set_parent
-    @parent = Comment.find_by(id: params[:parent_id])
-  end
+  # def set_post
+  #   @post = Post.find_by(id: params[:post_id])
+  # end
+  #
+  # def set_comment
+  #   @comment = Comment.find(params[:id])
+  # end
+  #
+  # def set_parent
+  #   @parent = Comment.find_by(id: params[:parent_id])
+  # end
 
   def comment_params
     params.expect(comment: [:content])

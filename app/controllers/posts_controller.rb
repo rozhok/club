@@ -4,8 +4,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comments = @post.comments.where(parent_id: nil).includes(:user, :replies)
+    @post = Post.with_rich_text_content_and_embeds.find(params[:id])
+    @comments = @post.comments.with_rich_text_content_and_embeds
   end
 
   def new

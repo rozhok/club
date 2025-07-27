@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4 py-4 max-w-3/4">
   <div class="card card-border shadow-sm mb-8">
     <div class="card-body prose lg:prose-xl text-black">
-      <h2 class="card-title text-xl font-bold mb-6"><%= @post.title %></h2>
+      <h1 class="card-title text-xl font-bold mb-6"><%= @post.title %></h1>
       <%= @post.content %>
     </div>
 
@@ -12,7 +12,11 @@
 
   <h2 class="text-2xl mb-8">Коментарі👇</h2>
 
-  <%= turbo_frame_tag dom_id(@post, :new_comment), src: new_comment_path(post_id: @post.id) %>
+  <%= turbo_frame_tag "new_comment_form" do %>
+    <%= render partial: "comments/form", locals: { post: @post, comment: @post.comments.build } %>
+  <% end %>
 
-  <%= turbo_frame_tag dom_id(@post, :comments), src: comments_path(post_id: @post.id) %>
+  <%= render @comments %>
+
+  <%= turbo_frame_tag Comment.new %>
 </div>
