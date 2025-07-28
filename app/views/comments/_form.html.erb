@@ -6,7 +6,7 @@
     <div class="card-actions justify-end p-4 pt-0 pr-6">
       <% if comment.persisted? %>
         <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
-        <%#= link_to "❌Скасувати", comment_path(target, post_id: post.id), class: "btn btn-neutral btn-outline" %>
+        <%= link_to "❌Скасувати", post_comment_path(comment), class: "btn btn-neutral btn-outline" %>
       <% else %>
         <%= f.submit "✅Додати", class: "btn btn-neutral btn-outline" %>
       <% end %>
