@@ -3,6 +3,7 @@
 @source "../../../app/helpers/**/*.rb";
 @source "../../../app/javascript/**/*.js";
 @source "../../../app/views/**/*";
+@source "../../../app/models/**/*";
 
 @plugin "@tailwindcss/typography";
 @plugin    "./daisyui.js";

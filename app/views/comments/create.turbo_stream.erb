@@ -6,4 +6,7 @@
     <%= render @comment %>
   <% end %>
 <% else %>
+  <%= turbo_stream.update "comment_#{@comment.parent_id}_reply" do %>
+    <%= render @comment %>
+  <% end %>
 <% end %>

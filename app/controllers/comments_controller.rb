@@ -12,7 +12,9 @@ class CommentsController < ApplicationController
   end
 
   def new
+    @post = Post.find(params[:post_id])
     @comment = Comment.new
+    @parent_id = params[:parent_id]
   end
 
   def edit
@@ -23,6 +25,10 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
     @comment.user_id = Current.user.id
+    if comment_params[:parent_id].present?
+      parent = Comment.find(comment_params[:parent_id])
+      @comment.level = parent.level + 1
+    end
     @comment.save
   end
 
@@ -32,6 +38,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
     @comment.destroy
   end
 
@@ -63,6 +70,6 @@ class CommentsController < ApplicationController
   # end
 
   def comment_params
-    params.expect(comment: [:content])
+    params.expect(comment: [:content, :parent_id])
   end
 end

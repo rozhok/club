@@ -1,7 +1,14 @@
 <%= form_with(model: [post, comment]) do |f| %>
+  <% if @parent_id.present? %>
+    <%= f.hidden_field :parent_id, value: @parent_id %>
+  <% end %>
   <div class="card card-border shadow-sm text-black mt-4">
     <div class="card-body pb-2 pr-6">
-      <%= rhino_editor_for(f, :content, id: "post_#{post.id}_comment_#{comment.id}") %>
+      <% if @parent_id.present? %>
+        <%= rhino_editor_for(f, :content, id: "post_#{post.id}_comment_#{@parent_id}_reply") %>
+      <% else %>
+        <%= rhino_editor_for(f, :content, id: "post_#{post.id}_comment_#{comment.id}") %>
+      <% end %>
     </div>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
       <% if comment.persisted? %>
