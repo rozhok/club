@@ -1,7 +1,7 @@
 <%= turbo_frame_tag comment do %>
   <div class="card card-lg card-border shadow-sm mt-4 <%= comment.padding %>">
     <div class="card-body pb-2 pr-6">
-      <div class="prose text-black">
+      <div class="prose text-black !max-w-none">
         <%= comment.content %>
       </div>
       <div class="card-actions justify-end">
