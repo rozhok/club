@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.with_rich_text_content_and_embeds.find(params[:id])
-    @comments = @post.comments.with_rich_text_content_and_embeds
+    @comments = @post.replies
   end
 
   def new
