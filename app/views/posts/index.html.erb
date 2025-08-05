@@ -1,10 +1,15 @@
 <div class="container mx-auto p-4 w-3/4 space-y-4">
   <% @posts.each do |post| %>
     <div class="card card-border card-xl shadow-sm">
+      <div class="avatar absolute -left-8 top-1/2 transform -translate-y-1/2">
+        <div class="w-16 rounded-full">
+          <%= image_tag post.user.avatar %>
+        </div>
+      </div>
       <div class="card-body">
         <h2 class="card-title text-3xl"><%= link_to post.title, post_path(post) %></h2>
         <div class="card-actions justify-start">
-          <%= link_to "TODO: Коментарі", post_path(post), class: "link" %>
+          <%= link_to post.comments_count_text, post_path(post), class: "link" %>
         </div>
       </div>
     </div>

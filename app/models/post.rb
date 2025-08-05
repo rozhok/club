@@ -32,4 +32,16 @@ class Post < ApplicationRecord
       end
     end
   end
+
+  def comments_count_text
+    if comments_count.zero?
+      "Немає коментарів"
+    elsif comments_count == 1
+      "1 коментар"
+    elsif comments_count <= 4
+      "#{comments_count} коментарі"
+    else
+      "#{comments_count} коментарів"
+    end
+  end
 end

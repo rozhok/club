@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   # before_action :set_parent, only: %i[show new create]
 
   def index
-    @comments = @post.comments.with_rich_text_content_and_embeds.where(parent_id: nil)
+    @comments = @post.comments.includes(user: { avatar_attachment: :blob }).with_rich_text_content_and_embeds.where(parent_id: nil)
   end
 
   def show
@@ -23,13 +23,16 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    @comment.user_id = Current.user.id
-    if comment_params[:parent_id].present?
-      parent = Comment.find(comment_params[:parent_id])
-      @comment.level = parent.level + 1
+    @post.transaction do
+      @comment = @post.comments.create(comment_params)
+      @comment.user_id = Current.user.id
+      if comment_params[:parent_id].present?
+        parent = Comment.find(comment_params[:parent_id])
+        @comment.level = parent.level + 1
+      end
+      @comment.save
+      @post.update!(comments_count: @post.comments_count + 1)
     end
-    @comment.save
   end
 
   def update

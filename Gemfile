@@ -33,5 +33,6 @@ group :test, :rubocop do
 end
 
 group :development do
+  gem "active_storage_dashboard"
   gem "web-console"
 end

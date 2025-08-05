@@ -42,6 +42,11 @@
           <%= rhino_editor_for(f, :contacts) %>
           <p class="label">Месенджери, соціальні мережі</p>
         </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend text-lg">Фотографія</legend>
+          <%= f.file_field :avatar, class: "file-input" %>
+        </fieldset>
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>

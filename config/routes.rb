@@ -23,4 +23,5 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :users, only: [:show, :update]
+  mount ActiveStorageDashboard::Engine, at: "/active-storage-dashboard"
 end
