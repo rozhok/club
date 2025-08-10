@@ -1,8 +1,4 @@
 class CommentsController < ApplicationController
-  # before_action :set_post
-  # before_action :set_comment, only: %i[show edit update destroy]
-  # before_action :set_parent, only: %i[show new create]
-
   def index
     @comments = @post.comments.includes(user: { avatar_attachment: :blob }).with_rich_text_content_and_embeds.where(parent_id: nil)
   end
@@ -59,18 +55,6 @@ class CommentsController < ApplicationController
   end
 
   private
-
-  # def set_post
-  #   @post = Post.find_by(id: params[:post_id])
-  # end
-  #
-  # def set_comment
-  #   @comment = Comment.find(params[:id])
-  # end
-  #
-  # def set_parent
-  #   @parent = Comment.find_by(id: params[:parent_id])
-  # end
 
   def comment_params
     params.expect(comment: [:content, :parent_id])

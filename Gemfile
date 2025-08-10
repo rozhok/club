@@ -20,6 +20,7 @@ gem "bootsnap", require: false
 gem "image_processing"
 
 group :development, :test do
+  gem "active_storage_dashboard"
   gem "brakeman", require: false
   gem "authentication-zero", require: false
 end
@@ -33,6 +34,5 @@ group :test, :rubocop do
 end
 
 group :development do
-  gem "active_storage_dashboard"
   gem "web-console"
 end

@@ -18,7 +18,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
   test "should not update password with wrong password challenge" do
     patch password_url, params: { password_challenge: "SecretWrong1*3", password: "Secret6*4*2*", password_confirmation: "Secret6*4*2*" }
 
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
     assert_select "li", /Password challenge Невірний пароль/
   end
 end

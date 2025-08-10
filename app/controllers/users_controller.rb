@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       render :edit, status: :ok
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

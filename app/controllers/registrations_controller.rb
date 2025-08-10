@@ -15,7 +15,7 @@ class RegistrationsController < ApplicationController
 
       redirect_to profile_path, notice: "Welcome! You have signed up successfully"
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
