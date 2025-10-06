@@ -19,6 +19,18 @@ class User < ApplicationRecord
   end
 
   def newcomer?
-    role == "user_new"
+    role == "newcomer"
+  end
+
+  def member?
+    role == "member"
+  end
+
+  def moderator?
+    role == "moderator"
+  end
+
+  def admin?
+    role == "admin"
   end
 end

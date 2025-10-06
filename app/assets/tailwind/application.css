@@ -6,4 +6,5 @@
 @source "../../../app/models/**/*";
 
 @plugin "@tailwindcss/typography";
-@plugin    "./daisyui.js";
+
+@plugin "./daisyui.mjs";

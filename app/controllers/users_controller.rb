@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    if params[:id].present?
+      @user = User.find(params[:id])
+    else
+      @user = Current.user
+    end
   end
 
   def edit
@@ -10,7 +14,7 @@ class UsersController < ApplicationController
   def update
     @user = Current.user
     if @user.update(user_params)
-      render :edit, status: :ok
+      redirect_to profile_path
     else
       render :edit, status: :unprocessable_content
     end

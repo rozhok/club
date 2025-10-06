@@ -2,7 +2,10 @@
   <div class="card card-lg card-border shadow-sm mt-4 <%= comment.padding %>">
     <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
       <div class="w-12 rounded-full">
-        <%= image_tag comment.user.avatar %>
+        <% if comment.user.avatar.attached? %>
+          <%= image_tag comment.user.avatar %>
+        <% else %>
+        <% end %>
       </div>
     </div>
     <div class="card-body pb-2 pr-6">

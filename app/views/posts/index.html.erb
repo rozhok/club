@@ -3,7 +3,11 @@
     <div class="card card-border card-xl shadow-sm">
       <div class="avatar absolute -left-8 top-1/2 transform -translate-y-1/2">
         <div class="w-16 rounded-full">
-          <%= image_tag post.user.avatar %>
+          <% if post.user.avatar.attached? %>
+            <%= image_tag post.user.avatar %>
+          <% else %>
+
+          <% end %>
         </div>
       </div>
       <div class="card-body">
