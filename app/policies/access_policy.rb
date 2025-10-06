@@ -22,9 +22,13 @@ class AccessPolicy
     # More privileged role, applies to registered users.
     #
     role :member, proc { |user| user.member? } do
+      can :read, Post
       can :create, Post
       can :create, Comment
       can :update, Post do |post, user|
+        post.user == user
+      end
+      can :destroy, Post do |post, user|
         post.user == user
       end
       can :update, Comment do |comment, user|

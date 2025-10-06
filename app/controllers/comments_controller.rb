@@ -1,13 +1,16 @@
 class CommentsController < ApplicationController
   def index
+    authorize! :read, Comment
     @comments = @post.comments.includes(user: { avatar_attachment: :blob }).with_rich_text_content_and_embeds.where(parent_id: nil)
   end
 
   def show
+    authorize! :read, Comment
     @comment = Comment.find(params[:id])
   end
 
   def new
+    authorize! :create, Comment
     @post = Post.find(params[:post_id])
     @comment = Comment.new
     @parent_id = params[:parent_id]
@@ -15,9 +18,11 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    authorize! :update, @comment
   end
 
   def create
+    authorize! :create, Comment
     @post = Post.find(params[:post_id])
     @post.transaction do
       @comment = @post.comments.create(comment_params)
@@ -33,15 +38,18 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.find(params[:id])
+    authorize! :update, @comment
     @comment.update(comment_params)
   end
 
   def destroy
     @comment = Comment.find(params[:id])
+    authorize! :destroy, @comment
     @comment.destroy
   end
 
   def reply
+    authorize! :create, Comment
     @reply = @comment.replies.new(comment_params)
     @reply.level = @comment.level + 1
     @reply.post = @comment.post

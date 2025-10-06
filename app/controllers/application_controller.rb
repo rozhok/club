@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_user
+    Current.user
+  end
+
   def set_current_request_details
     Current.user_agent = request.user_agent
     Current.ip_address = request.ip
