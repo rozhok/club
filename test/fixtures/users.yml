@@ -1,3 +1,4 @@
 lazaro_nixon:
   email: lazaronixon@hotmail.com
+  role: member
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
