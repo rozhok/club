@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_rich_text :content
 
   def replies
-    post_comments = comments.order(:id).with_rich_text_content_and_embeds
+    post_comments = comments.includes(user: { avatar_attachment: :blob }).order(:id).with_rich_text_content_and_embeds
     parent_to_children = {}
     post_comments.each do |comment|
       if comment.parent_id.present?

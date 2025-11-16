@@ -25,6 +25,7 @@ class AccessPolicy
       can :read, Post
       can :create, Post
       can :create, Comment
+      can :read, Comment
       can :update, Post do |post, user|
         post.user == user
       end

@@ -2,7 +2,10 @@
   <%= form_with model: @post do |f| %>
     <div class="card card-border shadow-sm text-black">
       <div class="card-body">
-        <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
+        <fieldset class="fieldset">
+          <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
+          <p class="label">Назва посту</p>
+        </fieldset>
         <%= rhino_editor_for(f, :content) %>
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">

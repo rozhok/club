@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     authorize! :read, Post
-    @posts = Post.includes(user: { avatar_attachment: :blob }).order(updated_at: :desc).with_rich_text_content_and_embeds
+    @posts = Post.includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
   end
 
   def show
