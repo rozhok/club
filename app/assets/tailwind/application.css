@@ -8,4 +8,5 @@
 
 @plugin "@tailwindcss/typography";
 
+@source not "./daisyui{,*}.mjs";
 @plugin "./daisyui.mjs";
