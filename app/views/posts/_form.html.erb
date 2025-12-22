@@ -3,10 +3,23 @@
     <div class="card card-border shadow-sm text-black">
       <div class="card-body">
         <fieldset class="fieldset">
-          <%= f.text_field :title, class: "w-full min-w-full input input-xl" %>
-          <p class="label">Назва посту</p>
+          <%= f.text_field :title, class: "w-full min-w-full input input-xl #{@post.errors[:title].any? ? 'input-error' : ''}" %>
+          <p class="label <%= @post.errors[:title].any? ? 'text-error' : '' %>">
+            <% if @post.errors[:title].any? %>
+              <span class="label-text-alt text-error"><%= @post.errors[:title].first %></span>
+            <% else %>
+              Назва посту
+            <% end %>
+          </p>
         </fieldset>
-        <%= rhino_editor_for(f, :content) %>
+        <div class="<%= @post.errors[:content].any? ? 'border-2 border-error rounded-lg' : '' %>">
+          <%= rhino_editor_for(f, :content) %>
+        </div>
+        <% if @post.errors[:content].any? %>
+          <p class="label text-error mt-2">
+            <span class="label-text-alt text-error"><%= @post.errors[:content].first %></span>
+          </p>
+        <% end %>
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <% if @post.created_at %>

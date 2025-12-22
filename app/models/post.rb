@@ -3,6 +3,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy, inverse_of: :post
   has_rich_text :content
 
+  validates :title, presence: true
+  validates :content, presence: true
+
   def replies
     post_comments = comments.includes(user: { avatar_attachment: :blob }).order(:id).with_rich_text_content_and_embeds
     parent_to_children = {}

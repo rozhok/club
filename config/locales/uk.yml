@@ -12,3 +12,9 @@ uk:
           attributes:
             password_challenge:
               invalid: Невірний пароль
+        post:
+          attributes:
+            content:
+              blank: Потрібно щось написати
+            title:
+              blank: Посту потрібна назва
