@@ -1,4 +1,16 @@
 <div class="container mx-auto px-4 py-8 max-w-3/4">
+  <% if Current.user.newcomer? %>
+    <div class="flex flex-col gap-4 mb-4">
+      <div class="flex justify-center">
+        <p>
+          Напишіть про себе👇
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <%= link_to "Додати інтро", new_intro_path, class: "btn btn-outline btn-xl" %>
+      </div>
+    </div>
+  <% end %>
   <div class="card card-border shadow-sm mb-8">
     <div class="card-body">
       <div class="flex flex-row gap-4">
@@ -43,7 +55,6 @@
               </li>
             </ul>
           </div>
-
         </div>
       </div>
     </div>

@@ -37,6 +37,10 @@ class AccessPolicy
       end
     end
 
+    role :newcomer, proc { |user| user.newcomer? } do
+      can :create, Post
+    end
+
     # The base role with no additional conditions.
     # Applies to every user.
     #
