@@ -15,21 +15,21 @@
       <%= form.label :email, class: "label" do %>
         <span class="label-text">Пошта</span>
       <% end %>
-      <%= form.email_field :email, required: true, autofocus: true, autocomplete: "email", class: "input input-lg input-bordered w-full" %>
+      <%= form.email_field :email, required: true, autofocus: true, autocomplete: "email", class: "input input-lg input-bordered w-full validator" %>
     </div>
 
     <div class="form-control">
       <%= form.label :password, class: "label" do %>
         <span class="label-text">Пароль</span>
       <% end %>
-      <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-lg input-bordered w-full" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", class: "input input-lg input-bordered w-full validator" %>
     </div>
 
     <div class="form-control">
       <%= form.label :password_confirmation, "Confirm Password", class: "label" do %>
         <span class="label-text">Повторіть пароль</span>
       <% end %>
-      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "input input-lg input-bordered w-full" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "input input-lg input-bordered w-full validator" %>
     </div>
 
     <% if alert.present? %>

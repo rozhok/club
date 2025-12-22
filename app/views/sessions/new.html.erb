@@ -6,14 +6,14 @@
       <%= form.label :email, class: "label" do %>
         <span class="label-text">Пошта</span>
       <% end %>
-      <%= form.email_field :email, value: params[:email_hint], required: true, autofocus: true, autocomplete: "email", class: "input input-lg input-bordered w-full" %>
+      <%= form.email_field :email, value: params[:email_hint], required: true, autofocus: true, autocomplete: "email", class: "input input-lg input-bordered w-full validator" %>
     </div>
 
     <div class="form-control">
       <%= form.label :password, class: "label" do %>
         <span class="label-text">Пароль</span>
       <% end %>
-      <%= form.password_field :password, required: true, autocomplete: "current-password", class: "input input-lg input-bordered w-full" %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", class: "input input-lg input-bordered w-full validator" %>
     </div>
 
     <% if alert.present? %>
