@@ -6,7 +6,9 @@
     <% if Current.user.present? %>
       <div class="space-x-1">
         <%= link_to "👤Профіль", profile_path, class: "btn btn-neutral btn-outline" %>
-        <%= link_to "✍️Написати", new_post_path, class: "btn btn-neutral btn-outline" %>
+        <% if can? :create, Post %>
+          <%= link_to "✍️Написати", new_post_path, class: "btn btn-neutral btn-outline" %>
+        <% end %>
       </div>
     <% else %>
       <%= link_to "Вхід", sign_in_path, class: "btn btn-neutral btn-outline" %>

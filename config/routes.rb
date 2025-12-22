@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
+  get "magic_link", to: "sessions#magic_link"
 
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
@@ -13,17 +14,13 @@ Rails.application.routes.draw do
   post "profile", to: "users#update"
 
   resources :sessions, only: [:index, :show, :destroy]
-  resource :password, only: [:edit, :update]
-
-  namespace :identity do
-    resource :email, only: [:edit, :update]
-    resource :password_reset, only: [:new, :edit, :create, :update]
-  end
 
   resources :posts do
     resources :comments
   end
+
   resources :intros, only: [:new, :create, :update]
   resources :users, only: [:show, :update]
+
   mount ActiveStorageDashboard::Engine, at: "/active-storage-dashboard"
 end

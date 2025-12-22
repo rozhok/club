@@ -1,27 +1,27 @@
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate
 
+  def show
+  end
+
   def new
     @user = User.new
   end
 
   def create
-    @user = User.new(user_params)
-    @user.role = "user_new"
-
-    if @user.save
-      session_record = @user.sessions.create!
-      cookies.signed.permanent[:session_token] = { value: session_record.id, httponly: true }
-
-      redirect_to profile_path, notice: "Welcome! You have signed up successfully"
-    else
-      render :new, status: :unprocessable_content
+    @user = User.find_by(email: user_params[:email])
+    if @user.nil?
+      @user = User.new(user_params)
+      @user.role = "newcomer"
+      @user.save
     end
+
+    UserMailer.with(user: @user).magic_link.deliver_later
   end
 
   private
 
   def user_params
-    params.permit(:email, :password, :password_confirmation)
+    params.permit(:email)
   end
 end

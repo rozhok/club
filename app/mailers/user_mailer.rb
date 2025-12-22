@@ -1,15 +1,11 @@
 class UserMailer < ApplicationMailer
-  def password_reset
-    @user = params[:user]
-    @signed_id = @user.generate_token_for(:password_reset)
+  def magic_link
+    user = params[:user]
+    @magic_link_url = magic_link_url(token: user.generate_token_for(:magic_link))
+    if Rails.env.development?
+      Rails.logger.info(@magic_link_url)
+    end
 
-    mail to: @user.email, subject: "Reset your password"
-  end
-
-  def email_verification
-    @user = params[:user]
-    @signed_id = @user.generate_token_for(:email_verification)
-
-    mail to: @user.email, subject: "Verify your email"
+    mail(to: user.email, subject: "Вхід до Ріжок Клубу")
   end
 end

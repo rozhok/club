@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :authenticate, only: %i[new create]
+  skip_before_action :authenticate, only: %i[new create magic_link]
 
   before_action :set_session, only: :destroy
 
@@ -11,14 +11,28 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate_by(email: params[:email], password: params[:password])
+    user = User.find_by(email: params[:email])
+
     if user.present?
+      UserMailer.with(user: user).magic_link.deliver_later
+    else
+      redirect_to sign_in_path(email_hint: params[:email]), alert: "Такої пошти немає"
+    end
+  end
+
+  def magic_link
+    user = User.find_by_token_for(:magic_link, params[:token])
+
+    if user
       @session = user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
-
-      redirect_to root_path, notice: "Signed in successfully"
+      if user.newcomer?
+        redirect_to edit_profile_path
+      else
+        redirect_to root_path
+      end
     else
-      redirect_to sign_in_path(email_hint: params[:email]), alert: "Невірний пароль або пошта🤷‍♂️"
+      redirect_to sign_in_path, alert: "Посилання зіпсулось або недійсне"
     end
   end
 

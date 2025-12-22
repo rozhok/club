@@ -25,7 +25,7 @@ gem "access-granted"
 
 group :development, :test do
   gem "active_storage_dashboard"
-  gem "hotwire-spark"
+  # gem "hotwire-spark"
   gem "brakeman", require: false
   gem "authentication-zero", require: false
 end

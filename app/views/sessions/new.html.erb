@@ -1,4 +1,4 @@
-<div class="max-w-md mx-auto my-8 p-6 rounded-lg shadow-sm">
+<div class="max-w-md mx-auto my-8 p-6 rounded-lg shadow-sm min-w-md" id="sign-in">
   <h1 class="text-2xl font-bold text-center mb-6">Вхід</h1>
 
   <%= form_with(url: sign_in_path, class: "space-y-4") do |form| %>
@@ -7,13 +7,6 @@
         <span class="label-text">Пошта</span>
       <% end %>
       <%= form.email_field :email, value: params[:email_hint], required: true, autofocus: true, autocomplete: "email", class: "input input-lg input-bordered w-full validator" %>
-    </div>
-
-    <div class="form-control">
-      <%= form.label :password, class: "label" do %>
-        <span class="label-text">Пароль</span>
-      <% end %>
-      <%= form.password_field :password, required: true, autocomplete: "current-password", class: "input input-lg input-bordered w-full validator" %>
     </div>
 
     <% if alert.present? %>
@@ -34,8 +27,7 @@
 
   <div class="divider">або</div>
 
-  <div class="flex justify-between text-sm mt-4">
+  <div class="flex justify-center text-sm mt-4">
     <%= link_to "Зареєструватись", sign_up_path, class: "link" %>
-    <%= link_to "Забули пароль?", new_identity_password_reset_path, class: "link" %>
   </div>
 </div>

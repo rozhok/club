@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  # rescue_from AccessGranted::AccessDenied, with: :access_denied
   def index
     authorize! :read, Post
     @posts = Post.includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
@@ -47,6 +48,12 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to posts_path
   end
+
+  # def access_denied
+  #   if Current.user&.newcomer?
+  #     redirect_to profile_edit_path
+  #   end
+  # end
 
   def post_params
     params.expect!(post: [:content, :title])
