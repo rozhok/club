@@ -39,7 +39,7 @@ class AccessPolicy
 
     role :newcomer, proc { |user| user.newcomer? } do
       can :create, Intro
-      can :update, Post do |post, user|
+      can [:update, :read], Post do |post, user|
         post.user == user
       end
     end
