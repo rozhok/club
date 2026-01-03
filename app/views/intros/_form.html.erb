@@ -1,0 +1,25 @@
+<div class="container mx-auto px-4 py-4 max-w-3/4">
+  <%= form_with model: @post, url: intros_path do |f| %>
+    <div class="card card-border shadow-sm text-black">
+      <div class="card-body">
+        <div class="<%= @post.errors[:content].any? ? 'border-2 border-error rounded-lg' : '' %>">
+          <%= rhino_editor_for(f, :content) %>
+        </div>
+        <% if @post.errors[:content].any? %>
+          <p class="label text-error mt-2">
+            <span class="label-text-alt text-error"><%= @post.errors[:content].first %></span>
+          </p>
+        <% end %>
+      </div>
+      <div class="card-actions justify-end p-4 pt-0 pr-6">
+        <% if @post.created_at %>
+          <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
+          <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
+        <% else %>
+          <%= f.submit "✅Відправити на перевірку", class: "btn btn-neutral btn-outline" %>
+          <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+class Intro < Post
+end

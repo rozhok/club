@@ -38,7 +38,10 @@ class AccessPolicy
     end
 
     role :newcomer, proc { |user| user.newcomer? } do
-      can :create, Post
+      can :create, Intro
+      can :update, Post do |post, user|
+        post.user == user
+      end
     end
 
     # The base role with no additional conditions.

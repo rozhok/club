@@ -8,6 +8,9 @@ class SessionsController < ApplicationController
   end
 
   def new
+    if Current.user.present?
+      redirect_to posts_path
+    end
   end
 
   def create

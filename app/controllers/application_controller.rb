@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :set_current_request_details
   before_action :authenticate
 
+  rescue_from AccessGranted::AccessDenied, with: :access_denied
+
   private
 
   def authenticate
@@ -22,5 +24,11 @@ class ApplicationController < ActionController::Base
   def set_current_request_details
     Current.user_agent = request.user_agent
     Current.ip_address = request.ip
+  end
+
+  def access_denied
+    if Current.user&.newcomer?
+      redirect_to profile_path
+    end
   end
 end

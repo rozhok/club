@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one_attached :avatar
   has_rich_text :contacts
+  has_many :posts, dependent: :destroy
 
   has_many :sessions, dependent: :destroy
 
@@ -9,6 +10,10 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   normalizes :email, with: -> { it.strip.downcase }
+
+  def empty_intro?
+    posts.where(post_type: :intro).order(:id).first.nil?
+  end
 
   def newcomer?
     role == "newcomer"
