@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
-  # rescue_from AccessGranted::AccessDenied, with: :access_denied
   def index
-    authorize! :read, Post
+    authorize! :read, Post.new
     @posts = Post.includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
   end
 
   def show
-    authorize! :read, Post
     @post = Post.with_rich_text_content_and_embeds.find(params[:id])
+    authorize! :read, @post
     @comments = @post.replies
   end
 
@@ -26,6 +25,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = Current.user.id
     if @post.save
+      if params[:publish]
+        @post.publish_or_send_to_review
+      end
       redirect_to post_path(@post.id)
     else
       render :new, status: :unprocessable_content
@@ -36,6 +38,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     authorize! :update, @post
     if @post.update(post_params)
+      if params[:publish]
+        @post.publish_or_send_to_review
+      end
       redirect_to post_path(@post.id)
     else
       render :edit, status: :unprocessable_content
@@ -49,11 +54,19 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  # def access_denied
-  #   if Current.user&.newcomer?
-  #     redirect_to profile_edit_path
-  #   end
-  # end
+  def approve
+    @post = Post.find(params[:id])
+    authorize! :approve, @post
+    @post.approve
+    redirect_to post_path(@post)
+  end
+
+  def reject
+    @post = Post.find(params[:id])
+    authorize! :reject, @post
+    @post.reject
+    redirect_to post_path(@post)
+  end
 
   def post_params
     params.expect!(post: [:content, :title])

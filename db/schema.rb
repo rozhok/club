@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_22_205635) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_03_164135) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "post_state", ["draft", "pending", "approved", "rejected"]
   create_enum "post_type", ["intro", "post", "link", "project", "question", "guide"]
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -72,6 +73,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_22_205635) do
     t.integer "comments_count", default: 0
     t.datetime "created_at", null: false
     t.enum "post_type", default: "post", null: false, enum_type: "post_type"
+    t.enum "state", default: "draft", null: false, enum_type: "post_state"
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false

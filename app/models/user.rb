@@ -15,16 +15,21 @@ class User < ApplicationRecord
     posts.where(post_type: :intro).order(:id).first.nil?
   end
 
+  def approve
+    update(role: "member")
+  end
+
+  # TODO: can it be simplified?
   def newcomer?
-    role == "newcomer"
+    role == "newcomer" || member? || moderator? || admin?
   end
 
   def member?
-    role == "member"
+    role == "member" || moderator? || admin?
   end
 
   def moderator?
-    role == "moderator"
+    role == "moderator" || admin?
   end
 
   def admin?

@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   resources :sessions, only: [:index, :show, :destroy]
 
   resources :posts do
+    member do
+      patch :approve
+      patch :reject
+    end
     resources :comments
   end
 

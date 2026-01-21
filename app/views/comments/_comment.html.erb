@@ -13,8 +13,10 @@
         <%= comment.content %>
       </div>
       <div class="card-actions justify-end">
-        <%= link_to "📝Редагувати", edit_post_comment_path(post_id: comment.post_id, id: comment.id), class: "btn btn-neutral btn-outline" %>
-        <%= button_to "🗑Видалити", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-neutral btn-outline" %>
+        <% if can? :update, comment %>
+          <%= link_to "📝Редагувати", edit_post_comment_path(post_id: comment.post_id, id: comment.id), class: "btn btn-neutral btn-outline" %>
+          <%= button_to "🗑Видалити", post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-neutral btn-outline" %>
+        <% end %>
         <%= link_to "💬Відповісти", new_post_comment_path(parent_id: comment.id, post_id: comment.post.id), data: { turbo_frame: "comment_#{comment.id}_reply" }, class: "btn btn-neutral btn-outline" %>
       </div>
     </div>

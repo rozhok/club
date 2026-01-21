@@ -19,8 +19,11 @@ class AccessPolicy
       can :destroy, User
     end
 
-    # More privileged role, applies to registered users.
-    #
+    role :moderator, proc { |user| user.moderator? } do
+      can :approve, Post
+      can :reject, Post
+    end
+
     role :member, proc { |user| user.member? } do
       can :read, Post
       can :create, Post
@@ -43,13 +46,5 @@ class AccessPolicy
         post.user == user
       end
     end
-
-    # The base role with no additional conditions.
-    # Applies to every user.
-    #
-    # role :guest do
-    #  can :read, Post
-    #  can :read, Comment
-    # end
   end
 end

@@ -47,4 +47,40 @@ class Post < ApplicationRecord
       "#{comments_count} коментарів"
     end
   end
+
+  def approve
+    update(state: :approved)
+    if intro? && user.newcomer?
+      user.approve
+    end
+  end
+
+  def reject
+    update(state: :rejected)
+  end
+
+  def intro?
+    post_type == "intro"
+  end
+
+  def draft?
+    state == "draft"
+  end
+
+  def rejected?
+    state == "rejected"
+  end
+
+  def pending?
+    state == "pending"
+  end
+
+  def publish_or_send_to_review
+    # if post was rejected, send it to review
+    # if post was in draft, send it to review
+    if rejected? || draft?
+      update(state: "pending")
+    end
+    # do nothing if post was already approved
+  end
 end

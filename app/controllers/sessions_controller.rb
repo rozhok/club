@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       @session = user.sessions.create!
       cookies.signed.permanent[:session_token] = { value: @session.id, httponly: true }
       if user.newcomer?
-        redirect_to edit_profile_path
+        redirect_to profile_edit_path
       else
         redirect_to root_path
       end

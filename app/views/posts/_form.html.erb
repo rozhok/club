@@ -23,10 +23,11 @@
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <% if @post.created_at %>
-          <%= f.submit "✅Зберегти", class: "btn btn-neutral btn-outline" %>
+          <%= f.submit "✅Опублікувати", name: "publish", class: "btn btn-neutral btn-outline" %>
           <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
         <% else %>
-          <%= f.submit "✅Опублікувати", class: "btn btn-neutral btn-outline" %>
+          <%= f.submit "✅Опублікувати", name: "publish", class: "btn btn-neutral btn-outline" %>
+          <%= f.submit "💾Зберегти чернетку", name: "draft", class: "btn btn-neutral btn-outline" %>
           <%= link_to "❌Скасувати", :back, class: "btn btn-neutral btn-outline" %>
         <% end %>
       </div>
