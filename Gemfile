@@ -23,6 +23,8 @@ gem "access-granted"
 
 # gem "lexxy", "~> 0.1.4.beta"
 
+gem "mailgun-ruby"
+
 group :development, :test do
   gem "active_storage_dashboard"
   # gem "hotwire-spark"
