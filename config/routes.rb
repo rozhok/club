@@ -13,8 +13,6 @@ Rails.application.routes.draw do
   get "profile/edit", to: "users#edit"
   post "profile", to: "users#update"
 
-  resources :sessions, only: [:index, :show, :destroy]
-
   resources :posts do
     member do
       patch :approve
