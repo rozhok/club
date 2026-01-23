@@ -25,6 +25,8 @@ gem "access-granted"
 
 gem "mailgun-ruby"
 
+gem "aws-sdk-s3"
+
 group :development, :test do
   gem "active_storage_dashboard"
   # gem "hotwire-spark"
