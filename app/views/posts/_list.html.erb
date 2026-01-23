@@ -3,7 +3,7 @@
     <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
       <div class="w-12 rounded-full">
         <% if post.user.avatar.attached? %>
-          <%= image_tag cdn_image_url(post.user.avatar) %>
+          <%= image_tag cdn_image_url(post.user.avatar.variant(resize_to_limit: [160, 160])) %>
         <% else %>
 
         <% end %>
