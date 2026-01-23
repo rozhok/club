@@ -26,5 +26,13 @@ Rails.application.routes.draw do
   resources :intros, only: [:new, :create, :update]
   resources :users, only: [:show, :update]
 
+  direct :cdn_image do |model|
+    if Rails.env.production?
+      "https://#{ENV["CDN_URL"]}/#{model.key}"
+    else
+      Rails.application.routes.url_helpers.rails_blob_path(model, only_path: true)
+    end
+  end
+
   # mount ActiveStorageDashboard::Engine, at: "/active-storage-dashboard"
 end

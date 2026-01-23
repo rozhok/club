@@ -94,6 +94,7 @@ GEM
     date (3.5.1)
     dockerfile-rails (1.7.10)
       rails (>= 3.0.0)
+    dotenv (3.2.0)
     drb (2.2.3)
     erb (6.0.1)
     erubi (1.13.1)
@@ -384,6 +385,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   dockerfile-rails
+  dotenv
   image_processing
   importmap-rails
   mailgun-ruby

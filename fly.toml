@@ -13,6 +13,7 @@ console_command = '/rails/bin/rails console'
   release_command = './bin/rails db:prepare'
 
 [processes]
+  web = "bin/rails server"
   jobs = "bundle exec rake solid_queue:start"
 
 [http_service]
@@ -21,7 +22,7 @@ console_command = '/rails/bin/rails console'
   auto_stop_machines = 'off'
   auto_start_machines = true
   min_machines_running = 1
-  processes = ['app']
+  processes = ["web"]
 
   [[http_service.checks]]
     interval = '10s'

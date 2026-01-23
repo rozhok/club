@@ -40,6 +40,7 @@ group :test, :rubocop do
 end
 
 group :development do
+  gem "dotenv"
   gem "web-console"
   gem "dockerfile-rails", require: false
 end
