@@ -9,8 +9,7 @@
 @plugin "@tailwindcss/typography";
 
 @source not "./daisyui{,*}.mjs";
-@plugin "./daisyui.mjs";
 
-@theme {
-    --color-scheme: light dark;
+@plugin "./daisyui.mjs" {
+    themes: light --default;
 }
