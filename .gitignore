@@ -41,3 +41,5 @@
 *.iws
 
 /node_modules
+
+/infra/.terraform/
