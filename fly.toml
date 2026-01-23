@@ -12,6 +12,9 @@ console_command = '/rails/bin/rails console'
 [deploy]
   release_command = './bin/rails db:prepare'
 
+[processes]
+  jobs = "bundle exec rake solid_queue:start"
+
 [http_service]
   internal_port = 3000
   force_https = true
