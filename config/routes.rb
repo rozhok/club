@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   resources :intros, only: [:new, :create, :update]
   resources :users, only: [:show, :update]
 
-  mount ActiveStorageDashboard::Engine, at: "/active-storage-dashboard"
+  # mount ActiveStorageDashboard::Engine, at: "/active-storage-dashboard"
 end

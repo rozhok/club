@@ -92,6 +92,8 @@ GEM
     connection_pool (3.0.2)
     crass (1.0.6)
     date (3.5.1)
+    dockerfile-rails (1.7.10)
+      rails (>= 3.0.0)
     drb (2.2.3)
     erb (6.0.1)
     erubi (1.13.1)
@@ -365,6 +367,7 @@ DEPENDENCIES
   bcrypt
   bootsnap
   brakeman
+  dockerfile-rails
   image_processing
   importmap-rails
   pg
