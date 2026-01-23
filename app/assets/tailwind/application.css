@@ -10,3 +10,7 @@
 
 @source not "./daisyui{,*}.mjs";
 @plugin "./daisyui.mjs";
+
+@theme {
+    --color-scheme: light dark;
+}
