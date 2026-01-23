@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 py-8 max-w-3/4">
+<div class="mx-auto w-7/8 space-y-4">
   <% if Current.user.empty_intro? %>
     <div class="flex flex-col gap-4 mb-4">
       <div class="flex justify-center">
@@ -16,7 +16,7 @@
       <div class="flex flex-row gap-4">
 
         <div class="avatar">
-          <div class="w-48 h-48 rounded-full">
+          <div class="w-16 h-16 rounded-full">
             <% if @user.avatar.attached? %>
               <%= image_tag cdn_image_url(@user.avatar) %>
             <% else %>
@@ -28,28 +28,25 @@
 
           <div class="flex justify-between items-center gap-2">
             <div class="flex items-center gap-2">
-              <h1 class="text-3xl font-bold"><%= @user.name %></h1>
-              <h2 class="text-3xl text-gray-600">@<%= @user.username %></h2>
-            </div>
-            <div>
-              <%= link_to "📝Редагувати", profile_edit_path, class: "btn btn-neutral btn-outline" %>
+              <h1 class="text-xl font-bold"><%= @user.name %></h1>
+              <h2 class="text-l text-gray-600">@<%= @user.username %></h2>
             </div>
           </div>
 
           <div class="">
             <ul class="">
               <li>
-                <h3 class="text-2xl">
+                <h3 class="text-l">
                   <%= @user.title %> в <%= @user.company %>
                 </h3>
               </li>
               <li>
-                <h3 class="text-2xl">
+                <h3 class="text-l">
                   <%= "📍#{@user.location}" %>
                 </h3>
               </li>
               <li>
-                <div class="prose lg:prose-xl text-black !max-w-none">
+                <div class="prose prose-m text-black !max-w-none">
                   <%= @user.contacts %>
                 </div>
               </li>
@@ -57,6 +54,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="card-actions justify-end p-4 pt-0 pr-6">
+      <%= link_to "📝Редагувати", profile_edit_path, class: "btn btn-sm btn-neutral btn-outline" %>
     </div>
   </div>
   <%= render partial: "posts/list", locals: { posts: @user.posts } %>

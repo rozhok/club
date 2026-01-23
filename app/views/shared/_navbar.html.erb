@@ -2,16 +2,26 @@
   <div class="navbar-start">
     <%= link_to "Ріжок🍦Клуб", root_path, class: "btn btn-ghost text-xl" %>
   </div>
+
   <div class="navbar-end">
-    <% if Current.user.present? %>
-      <div class="space-x-1">
-        <%= link_to "👤Профіль", profile_path, class: "btn btn-neutral btn-outline" %>
-        <% if can? :create, Post %>
-          <%= link_to "✍️Написати", new_post_path, class: "btn btn-neutral btn-outline" %>
-        <% end %>
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
+        </svg>
       </div>
-    <% else %>
-      <%= link_to "Вхід", sign_in_path, class: "btn btn-neutral btn-outline" %>
-    <% end %>
+      <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <% if Current.user.present? %>
+          <li><%= link_to "👤Профіль", profile_path, class: "text-lg" %></li>
+          <li>
+            <% if can? :create, Post %>
+              <%= link_to "✍️Написати", new_post_path, class: "text-lg" %>
+            <% end %>
+          </li>
+        <% else %>
+          <li> <%= link_to "Вхід", sign_in_path %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

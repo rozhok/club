@@ -1,6 +1,6 @@
-<div class="container mx-auto px-4 py-4 max-w-3/4">
+<div class="container mx-auto w-7/8">
   <div class="card card-border shadow-sm mb-8">
-    <div class="card-body prose lg:prose-xl text-black !max-w-none">
+    <div class="card-body prose prose-l text-black !max-w-none">
       <% case @post.state %>
       <% when "pending" %>
         <div role="alert" class="alert alert-warning">
@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <h2 class="text-2xl mb-8">Коментарі👇</h2>
+  <h2 class="text-xl mb-8">Коментарі👇</h2>
 
   <%= turbo_frame_tag "new_comment_form" do %>
     <%= render partial: "comments/form", locals: { post: @post, comment: @post.comments.build } %>
