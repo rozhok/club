@@ -1,6 +1,6 @@
 <div class="container mx-auto w-7/8">
   <div class="card card-border shadow-sm mb-8">
-    <div class="card-body prose prose-l text-black !max-w-none">
+    <div class="card-body prose text-black !max-w-none">
       <% case @post.state %>
       <% when "pending" %>
         <div role="alert" class="alert alert-warning">
@@ -17,7 +17,7 @@
           <span>Пост потребує допрацювання</span>
         </div>
       <% end %>
-      <h1 class="!mb-0 card-title text-xl font-bold"><%= @post.draft? ? "Чернетка: " : "" %><%= @post.title %></h1>
+      <h1 class="!mb-0 card-title text-3xl font-bold"><%= @post.draft? ? "Чернетка: " : "" %><%= @post.title %></h1>
       <%= @post.content %>
     </div>
 
