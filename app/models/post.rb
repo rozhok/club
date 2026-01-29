@@ -6,6 +6,10 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  # rubocop:disable Style/WordArray
+  POST_TYPES = [["Пост", "post"], ["Посилання", "link"], ["Проєкт", "project"], ["Запитання", "question"], ["Путівник", "guide"]].freeze
+  # rubocop:enable Style/WordArray
+
   def replies
     post_comments = comments.includes(user: { avatar_attachment: :blob }).order(:id).with_rich_text_content_and_embeds
     parent_to_children = {}
@@ -88,6 +92,21 @@ class Post < ApplicationRecord
     case state
     when "draft"
       "Чернетка: #{title}"
+    else
+      title_with_type
+    end
+  end
+
+  def title_with_type
+    case post_type
+    when "project"
+      "Проєкт: #{title}"
+    when "link"
+      "🔗 #{title}"
+    when "question"
+      "Запитання: #{title}"
+    when "guide"
+      "Путівник: #{title}"
     else
       title
     end

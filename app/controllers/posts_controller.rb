@@ -72,6 +72,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.expect!(post: [:content, :title])
+    params.expect!(post: [:content, :title, :post_type, :link])
   end
 end
