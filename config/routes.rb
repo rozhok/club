@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   root "posts#index"
 
-  post "tg/auth_callback", to: "tg#auth_callback"
+  get "tg/auth_callback", to: "tg#auth_callback"
 
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
