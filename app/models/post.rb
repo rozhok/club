@@ -83,4 +83,13 @@ class Post < ApplicationRecord
     end
     # do nothing if post was already approved
   end
+
+  def full_title
+    case state
+    when "draft"
+      "Чернетка: #{title}"
+    else
+      title
+    end
+  end
 end

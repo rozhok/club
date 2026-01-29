@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="card-body">
-      <h2 class="card-title text-xl"><%= link_to post.title, post_path(post) %></h2>
+      <h2 class="card-title text-xl"><%= link_to post.full_title, post_path(post) %></h2>
       <div class="card-actions justify-start">
         <%= link_to post.comments_count_text, post_path(post), class: "link" %>
       </div>

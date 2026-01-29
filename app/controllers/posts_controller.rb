@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
   def index
     authorize! :read, Post.new
-    @posts = Post.includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
+    @posts = Post.where(state: ["approved"]).includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
+    if current_user.moderator?
+      @posts = @posts.or(Post.where(state: "pending"))
+    end
   end
 
   def show
