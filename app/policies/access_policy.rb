@@ -29,15 +29,13 @@ class AccessPolicy
       can :create, Post
       can :create, Comment
       can :read, Comment
-      can :update, Post do |post, user|
-        post.user == user
-      end
-      can :destroy, Post do |post, user|
+      can [:update, :destroy], Post do |post, user|
         post.user == user
       end
       can :update, Comment do |comment, user|
         comment.user == user
       end
+      can :create, Intro
     end
 
     role :newcomer, proc { |user| user.newcomer? } do

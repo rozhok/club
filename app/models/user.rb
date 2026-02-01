@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   # TODO: can it be simplified?
   def newcomer?
-    role == "newcomer" || member? || moderator? || admin?
+    role == "newcomer"
   end
 
   def member?
@@ -34,5 +34,20 @@ class User < ApplicationRecord
 
   def admin?
     role == "admin"
+  end
+
+  class << self
+    def find_or_create_by_tg_id(tg_params)
+      existing_user = User.find_by(tg_id: tg_params[:id])
+      if existing_user.present?
+        return existing_user
+      end
+
+      User.create(email: "#{tg_params[:id]}@#{ENV.fetch("BASE_DOMAIN")}",
+                  tg_id: tg_params[:id],
+                  username: tg_params[:username],
+                  name: "#{tg_params[:first_name]} #{tg_params[:last_name]}",
+                  role: "newcomer")
+    end
   end
 end
