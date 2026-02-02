@@ -19,7 +19,8 @@
       <% end %>
       <h1 class="!mb-0 card-title text-3xl font-bold"><%= @post.full_title %></h1>
       <% if @post.post_type == "link" || @post.post_type == "project" %>
-        <h2 class="!mb-0 !mt-0 text-xl font-bold">👉<%= link_to @post.link, @post.link.html_safe, class: "link" %></h2>
+        <h2 class="!mb-0 !mt-0 text-xl font-bold">
+          <span>👉</span><%= link_to @post.link, @post.link.html_safe, class: "link" %></h2>
       <% end %>
       <%= @post.content %>
     </div>
@@ -27,14 +28,20 @@
     <div class="card-actions justify-end p-4 pt-0 pr-6">
       <% if @post.state == "pending" %>
         <% if can? :approve, Post %>
-          <%= button_to "✅Затвердити", approve_post_path(@post), method: :patch, class: "btn btn-sm btn-success btn-outline" %>
+          <%= button_to approve_post_path(@post), method: :patch, class: "btn btn-sm btn-success btn-outline" do %>
+            <span>✅</span><span>Затвердити</span>
+          <% end %>
         <% end %>
         <% if can? :reject, Post %>
-          <%= button_to "❌На доопрацювання", reject_post_path(@post), method: :patch, class: "btn btn-sm btn-warning btn-outline" %>
+          <%= button_to reject_post_path(@post), method: :patch, class: "btn btn-sm btn-warning btn-outline" do %>
+            <span>❌</span><span>На доопрацювання</span>
+          <% end %>
         <% end %>
       <% end %>
       <% if can? :update, @post %>
-        <%= link_to "📝Редагувати", edit_post_path(@post.id), class: "btn btn-sm btn-neutral btn-outline" %>
+        <%= link_to edit_post_path(@post.id), class: "btn btn-sm btn-neutral btn-outline" do %>
+          <span>📝</span><span>Редагувати</span>
+        <% end %>
       <% end %>
     </div>
   </div>

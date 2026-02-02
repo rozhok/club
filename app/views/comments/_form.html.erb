@@ -12,10 +12,16 @@
     </div>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
       <% if comment.persisted? %>
-        <%= f.submit "✅Зберегти", class: "btn btn-sm btn-neutral btn-outline" %>
-        <%= link_to "❌Скасувати", post_comment_path(comment), class: "btn btn-sm btn-neutral btn-outline" %>
+        <%= f.button type: "submit", class: "btn btn-sm btn-neutral btn-outline" do %>
+          <span>✅</span><span>Зберегти</span>
+        <% end %>
+        <%= link_to post_comment_path(comment), class: "btn btn-sm btn-neutral btn-outline" do %>
+          <span>❌</span><span>Скасувати</span>
+        <% end %>
       <% else %>
-        <%= f.submit "✅Додати", class: "btn btn-sm btn-neutral btn-outline" %>
+        <%= f.button type: "submit", class: "btn btn-sm btn-neutral btn-outline" do %>
+          <span>✅</span><span>Додати</span>
+        <% end %>
       <% end %>
     </div>
   </div>

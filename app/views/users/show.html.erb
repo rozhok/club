@@ -56,7 +56,9 @@
       </div>
     </div>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
-      <%= link_to "📝Редагувати", profile_edit_path, class: "btn btn-sm btn-neutral btn-outline" %>
+      <%= link_to profile_edit_path, class: "btn btn-sm btn-neutral btn-outline" do %>
+        <span>📝</span><span>Редагувати</span>
+      <% end %>
     </div>
   </div>
   <%= render partial: "posts/list", locals: { posts: @user.posts } %>

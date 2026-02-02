@@ -37,12 +37,24 @@
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <% if @post.created_at %>
-          <%= f.submit "✅Опублікувати", name: "publish", class: "btn btn-sm btn-neutral btn-outline" %>
-          <%= link_to "❌Скасувати", :back, class: "btn btn-sm btn-neutral btn-outline" %>
+          <%= f.button type: "submit", name: "publish", class: "btn btn-sm btn-neutral btn-outline" do %>
+            <span>✅</span>
+            <span>Опублікувати</span>
+          <% end %>
+          <%= link_to :back, class: "btn btn-sm btn-neutral btn-outline" do %>
+            <span>❌</span>
+            <span>Скасувати</span>
+          <% end %>
         <% else %>
-          <%= f.submit "✅Опублікувати", name: "publish", class: "btn btn-sm btn-neutral btn-outline" %>
-          <%= f.submit "💾Зберегти чернетку", name: "draft", class: "btn btn-sm btn-neutral btn-outline" %>
-          <%= link_to "❌Скасувати", :back, class: "btn btn-sm btn-neutral btn-outline" %>
+          <%= f.button type: "submit", name: "publish", class: "btn btn-sm btn-neutral btn-outline" do %>
+            <span>✅</span><span>Опублікувати</span>
+          <% end %>
+          <%= f.button type: "submit", name: "draft", class: "btn btn-sm btn-neutral btn-outline" do %>
+            <span>💾</span><span>Зберегти чернетку</span>
+          <% end %>
+          <%= link_to :back, class: "btn btn-sm btn-neutral btn-outline" do %>
+            <span>❌</span><span>Скасувати</span>
+          <% end %>
         <% end %>
       </div>
     </div>
