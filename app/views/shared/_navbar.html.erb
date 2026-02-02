@@ -14,7 +14,9 @@
           <% end %>
         </li>
       <% else %>
-        <li> <%= link_to "Вхід", sign_in_path, class: "btn btn-neutral btn-outline" %></li>
+        <% if !current_page?(sign_in_path) && !current_page?(sign_up_path) %>
+          <li><%= link_to "Вхід", sign_in_path, class: "btn btn-neutral btn-outline" %></li>
+        <% end %>
       <% end %>
     </ul>
 
@@ -33,7 +35,9 @@
             <% end %>
           </li>
         <% else %>
-          <li> <%= link_to "Вхід", sign_in_path %></li>
+          <% if !current_page?(sign_in_path) && !current_page?(sign_up_path) %>
+            <li><%= link_to "Вхід", sign_in_path %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
