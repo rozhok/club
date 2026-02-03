@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # this one used for pages where we want to set open graph attributes
+  def authenticate_for_external
+    session_record = Session.find_by(id: cookies.signed[:session_token])
+    if session_record.present?
+      Current.session = session_record
+    end
+  end
+
   def current_user
     Current.user
   end

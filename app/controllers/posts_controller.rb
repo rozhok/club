@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate, only: :show
+  before_action :authenticate_for_external, only: :show
   def index
     authorize! :read, Post.new
     @posts = Post.where(state: ["approved"]).includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
@@ -9,8 +11,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.with_rich_text_content_and_embeds.find(params[:id])
-    authorize! :read, @post
-    @comments = @post.replies
+    if Current.user && (can? :read, @post)
+      @comments = @post.replies
+    else
+      render :show_external
+    end
   end
 
   def new
