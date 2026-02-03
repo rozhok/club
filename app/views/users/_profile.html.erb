@@ -15,7 +15,9 @@
 
         <div class="flex justify-between items-center gap-2">
           <div class="flex items-center gap-2">
-            <h2 class="text-xl font-bold"><span class="font-bold mr-4"><%= user.name %></span><span class="text-gray-600">@<%= user.username %></span></h2>
+            <h2 class="text-xl font-bold">
+              <span class="font-bold mr-4"><%= user.name %></span><span class="text-gray-600">@<%= user.username %></span>
+            </h2>
           </div>
         </div>
 
@@ -45,6 +47,9 @@
     <div class="card-actions justify-end p-4 pt-0 pr-6">
       <%= link_to profile_edit_path, class: "btn btn-sm btn-neutral btn-outline" do %>
         <span>📝</span><span>Редагувати</span>
+      <% end %>
+      <%= link_to sign_out_path, data: { turbo_method: :delete }, class: "btn btn-sm btn-error btn-outline" do %>
+        <span>👋</span><span>Вийти</span>
       <% end %>
     </div>
   <% end %>

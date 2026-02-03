@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate, only: %i[new create magic_link tg_callback]
 
-  before_action :set_session, only: :destroy
-
   def index
     @sessions = Current.user.sessions.order(created_at: :desc)
   end
@@ -40,8 +38,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @session.destroy
-    redirect_to(sessions_path, notice: "That session has been logged out")
+    Current.session.destroy
+    redirect_to(root_path)
   end
 
   def tg_callback
@@ -65,11 +63,5 @@ class SessionsController < ApplicationController
 
   def tg_params
     params.permit(:id, :first_name, :last_name, :username, :photo_url)
-  end
-
-  private
-
-  def set_session
-    @session = Current.user.sessions.find(params[:id])
   end
 end
