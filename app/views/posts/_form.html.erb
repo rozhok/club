@@ -37,15 +37,23 @@
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <% if @post.created_at %>
+          <!-- existing post -->
           <%= f.button type: "submit", name: "publish", class: "btn btn-sm btn-neutral btn-outline" do %>
             <span>✅</span>
             <span>Опублікувати</span>
+          <% end %>
+          <% if @post.draft? %>
+            <!-- saved draft -->
+            <%= f.button type: "submit", name: "draft", class: "btn btn-sm btn-neutral btn-outline" do %>
+              <span>💾</span><span>Зберегти чернетку</span>
+            <% end %>
           <% end %>
           <%= link_to :back, class: "btn btn-sm btn-neutral btn-outline" do %>
             <span>❌</span>
             <span>Скасувати</span>
           <% end %>
         <% else %>
+          <!-- new post -->
           <%= f.button type: "submit", name: "publish", class: "btn btn-sm btn-neutral btn-outline" do %>
             <span>✅</span><span>Опублікувати</span>
           <% end %>
