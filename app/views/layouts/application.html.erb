@@ -16,6 +16,20 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= request.url %>">
+  <meta property="og:title" content="<%= content_for(:title) || "Ріжок Клуб" %>">
+  <meta name="description" property="og:description" content="<%= content_for(:description) || "Найкраща українська спільнота" %>">
+  <meta property="og:image" content="<%= @og_image.present? ? @og_image : image_url("og-card.jpg") %>">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="<%= request.url %>">
+  <meta property="twitter:title" content="<%= content_for(:title) || "Ріжок Клуб" %>">
+  <meta property="twitter:description" content="<%= content_for(:description) || "Найкраща українська спільнота" %>">
+  <meta property="twitter:image" content="<%= @og_image.present? ? @og_image : image_url("og-card.jpg") %>">
+
   <%# Includes all stylesheet files in app/assets/stylesheets %>
   <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
