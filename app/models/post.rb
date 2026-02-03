@@ -112,7 +112,7 @@ class Post < ApplicationRecord
     image = Vips::Image.new_from_file("app/assets/images/og-template.jpg")
 
     text = Vips::Image.text("<span foreground='white'>#{title_with_type}</span>",
-                            width: 1200,
+                            width: 1100,
                             font: "Arial Bold 52",
                             align: :centre,
                             dpi: 150,
