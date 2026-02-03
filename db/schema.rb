@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_29_054819) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_03_223514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -73,6 +73,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_29_054819) do
     t.integer "comments_count", default: 0
     t.datetime "created_at", null: false
     t.string "link", default: ""
+    t.string "og_image"
     t.enum "post_type", default: "post", null: false, enum_type: "post_type"
     t.enum "state", default: "draft", null: false, enum_type: "post_state"
     t.string "title", null: false

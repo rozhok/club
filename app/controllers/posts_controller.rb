@@ -36,6 +36,7 @@ class PostsController < ApplicationController
       if params[:publish]
         @post.publish_or_send_to_review
       end
+      GeneratePostOgImageJob.perform_later(@post.id)
       redirect_to post_path(@post.id)
     else
       render :new, status: :unprocessable_content
@@ -49,6 +50,7 @@ class PostsController < ApplicationController
       if params[:publish]
         @post.publish_or_send_to_review
       end
+      GeneratePostOgImageJob.perform_later(@post.id)
       redirect_to post_path(@post.id)
     else
       render :edit, status: :unprocessable_content

@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy, inverse_of: :post
   has_rich_text :content
+  has_one_attached :og_image_blob
 
   validates :title, presence: true
   validates :content, presence: true
@@ -105,5 +106,23 @@ class Post < ApplicationRecord
     else
       title
     end
+  end
+
+  def generate_og_image
+    image = Vips::Image.new_from_file("app/assets/images/og-template.jpg")
+
+    text = Vips::Image.text("<span foreground='white'>#{title_with_type}</span>",
+                            width: 1200,
+                            font: "Arial Bold 52",
+                            align: :centre,
+                            dpi: 150,
+                            rgba: true)
+
+    output = image.composite(text, :over, x: 100, y: 100)
+    buffer = output.write_to_buffer(".jpg")
+    og_image_blob.attach(io: StringIO.new(buffer), filename: "#{SecureRandom.uuid}.jpg", content_type: "image/jpeg")
+
+    image_url = "https://#{ENV.fetch("CDN_URL")}/#{og_image_blob.key}"
+    update(og_image: image_url)
   end
 end
