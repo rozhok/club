@@ -11,6 +11,13 @@
     </div>
     <div class="card-body">
       <h2 class="card-title text-xl"><%= link_to post.full_title, post_path(post) %></h2>
+      <% if post.draft? %>
+        <div class="badge badge-neutral badge-outline">Чернетка</div>
+      <% elsif post.rejected? %>
+        <div class="badge badge-outline badge-error">Потрібно допрацювати</div>
+      <% elsif post.pending? %>
+        <div class="badge badge-outline badge-warning">Очікує схвалення</div>
+      <% end %>
       <div class="card-actions justify-start">
         <%= link_to post.comments_count_text, post_path(post), class: "link" %>
       </div>

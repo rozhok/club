@@ -89,12 +89,7 @@ class Post < ApplicationRecord
   end
 
   def full_title
-    case state
-    when "draft"
-      "Чернетка: #{title}"
-    else
-      title_with_type
-    end
+    title_with_type
   end
 
   def title_with_type
