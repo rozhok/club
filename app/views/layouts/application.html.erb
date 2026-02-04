@@ -20,14 +20,14 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="<%= request.url %>">
   <meta property="og:title" content="<%= content_for(:title) || "Ріжок Клуб" %>">
-  <meta name="description" property="og:description" content="<%= content_for(:description) || "Найкраща українська спільнота" %>">
+  <meta name="description" property="og:description" content="<%= content_for(:og_description) || "Найкраща українська спільнота" %>">
   <meta property="og:image" content="<%= content_for(:og_image) || image_url("og-card.jpg") %>">
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="<%= request.url %>">
   <meta property="twitter:title" content="<%= content_for(:title) || "Ріжок Клуб" %>">
-  <meta property="twitter:description" content="<%= content_for(:description) || "Найкраща українська спільнота" %>">
+  <meta property="twitter:description" content="<%= content_for(:og_description) || "Найкраща українська спільнота" %>">
   <meta property="twitter:image" content="<%= content_for(:og_image) || image_url("og-card.jpg") %>">
 
   <%# Includes all stylesheet files in app/assets/stylesheets %>

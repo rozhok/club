@@ -125,4 +125,21 @@ class Post < ApplicationRecord
     image_url = "https://#{ENV.fetch("CDN_URL")}/#{og_image_blob.key}"
     update(og_image: image_url)
   end
+
+  def og_description
+    plain_text = content.to_plain_text.strip
+
+    max_length = 155
+
+    return plain_text if plain_text.length <= max_length
+
+    truncated = plain_text[0...(max_length - 3)]
+    last_space_idx = truncated.rindex(" ")
+
+    if last_space_idx && last_space_idx > max_length * 0.8
+      "#{truncated[0...last_space_idx]}..."
+    else
+      "#{truncated}..."
+    end
+  end
 end
