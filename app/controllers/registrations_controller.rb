@@ -12,7 +12,8 @@ class RegistrationsController < ApplicationController
     @user = User.find_by(email: user_params[:email])
     if @user.nil?
       @user = User.new(user_params)
-      @user.role = "newcomer"
+      # @user.role = "newcomer" # disable intros and accounts approval until beta launch
+      @user.role = "member"
       @user.save
     end
 
