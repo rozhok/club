@@ -47,7 +47,7 @@ class User < ApplicationRecord
                   tg_id: tg_params[:id],
                   username: tg_params[:username],
                   name: "#{tg_params[:first_name]} #{tg_params[:last_name]}",
-                  role: "newcomer")
+                  role: "member")
     end
   end
 end
