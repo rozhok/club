@@ -131,7 +131,9 @@ class Post < ApplicationRecord
 
     max_length = 155
 
-    return plain_text if plain_text.length <= max_length
+    if plain_text.length <= max_length
+      return plain_text
+    end
 
     truncated = plain_text[0...(max_length - 3)]
     last_space_idx = truncated.rindex(" ")

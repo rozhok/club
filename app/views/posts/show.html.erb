@@ -51,7 +51,7 @@
 
   <%= render partial: "users/profile", locals: { user: @post.user } %>
 
-  <h2 class="text-xl mb-8">Коментарі👇</h2>
+  <h2 id="comments" class="text-xl mb-8">Коментарі👇</h2>
 
   <%= turbo_frame_tag "new_comment_form" do %>
     <%= render partial: "comments/form", locals: { post: @post, comment: @post.comments.build } %>

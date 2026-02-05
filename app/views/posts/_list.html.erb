@@ -1,14 +1,16 @@
 <% posts.each do |post| %>
   <div class="card card-border card-xl shadow-sm">
-    <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
-      <div class="w-12 rounded-full">
-        <% if post.user.avatar.attached? %>
-          <%= image_tag cdn_image_url(post.user.avatar.variant(resize_to_limit: [160, 160]).processed) %>
-        <% else %>
+    <%= link_to user_path(post.user), onclick: "event.stopPropagation()" do %>
+      <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
+        <div class="w-12 rounded-full">
+          <% if post.user.avatar.attached? %>
+            <%= image_tag cdn_image_url(post.user.avatar.variant(resize_to_limit: [160, 160]).processed) %>
+          <% else %>
 
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="card-body">
       <h2 class="card-title text-xl"><%= link_to post.full_title, post_path(post) %></h2>
       <% if post.draft? %>
@@ -19,7 +21,7 @@
         <div class="badge badge-outline badge-warning">Очікує схвалення</div>
       <% end %>
       <div class="card-actions justify-start">
-        <%= link_to post.comments_count_text, post_path(post), class: "link" %>
+        <%= link_to post.comments_count_text, post_path(post, anchor: "comments"), class: "link" %>
       </div>
     </div>
   </div>
