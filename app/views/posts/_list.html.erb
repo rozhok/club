@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <div class="card card-border card-xl shadow-sm">
-    <%= link_to user_path(post.user), onclick: "event.stopPropagation()" do %>
+    <%= link_to user_path(post.user), class: "z-10" do %>
       <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
         <div class="w-12 rounded-full">
           <% if post.user.avatar.attached? %>
@@ -12,7 +12,7 @@
       </div>
     <% end %>
     <div class="card-body">
-      <h2 class="card-title text-xl"><%= link_to post.full_title, post_path(post) %></h2>
+      <h2 class="card-title text-xl"><%= link_to post.full_title, post_path(post), class: "after:absolute after:inset-0" %></h2>
       <% if post.draft? %>
         <div class="badge badge-neutral badge-outline">Чернетка</div>
       <% elsif post.rejected? %>
@@ -21,7 +21,7 @@
         <div class="badge badge-outline badge-warning">Очікує схвалення</div>
       <% end %>
       <div class="card-actions justify-start">
-        <%= link_to post.comments_count_text, post_path(post, anchor: "comments"), class: "link" %>
+        <%= link_to post.comments_count_text, post_path(post, anchor: "comments"), class: "link relative z-10" %>
       </div>
     </div>
   </div>
