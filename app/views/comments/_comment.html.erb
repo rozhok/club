@@ -1,14 +1,20 @@
 <%= turbo_frame_tag comment do %>
-  <div class="card card-lg card-border shadow-sm mt-4 <%= comment.padding %>">
-    <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
-      <div class="w-12 rounded-full">
-        <% if comment.user.avatar.attached? %>
-          <%= image_tag cdn_image_url(comment.user.avatar.variant(resize_to_limit: [160, 160]).processed) %>
-        <% else %>
-        <% end %>
+  <div class="card card-lg card-border shadow-sm mt-4 <%= comment.padding %>" id="<%= "comment-#{comment.id}" %>">
+    <%= link_to user_path(comment.user) do %>
+      <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
+        <div class="w-12 rounded-full">
+          <% if comment.user.avatar.attached? %>
+            <%= image_tag cdn_image_url(comment.user.avatar.variant(resize_to_limit: [160, 160]).processed) %>
+          <% else %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
     <div class="card-body pb-2 pr-6">
+      <h3 class="card-title text-sm">
+        <span><%= link_to comment.user.name, user_path(comment.user) %></span><span class="text-gray-500 font-light"><%= comment.user.title %></span>
+      </h3>
+      <h4 class="text-sm text-gray-500"><%= link_to l(comment.created_at, locale: :uk), post_path(comment.post, anchor: "comment-#{comment.id}") %></h4>
       <div class="prose text-black !max-w-none">
         <%= comment.content %>
       </div>
