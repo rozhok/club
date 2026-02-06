@@ -1,4 +1,14 @@
 uk:
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
   activerecord:
     models:
       user: Користувач
