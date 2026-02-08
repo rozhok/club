@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def cast_vote(votable_id)
-    votable = Comment.find(votable_id) || Post.find(votable_id)
+    votable = Comment.find_by(id: votable_id) || Post.find_by(id: votable_id)
     if votable.present? && votable.user_id != id
       votes.create(votable: votable)
       votable
@@ -30,7 +30,7 @@ class User < ApplicationRecord
 
   def retract_vote(votable_id:, votable_type:)
     vote = Vote.find_by(votable_id: votable_id, votable_type: votable_type)
-    votable = vote.votable
+    votable = vote&.votable
     if vote.present?
       vote.destroy
       votable

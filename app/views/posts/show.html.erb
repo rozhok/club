@@ -22,6 +22,7 @@
       <% end %>
       <h1 class="!mb-0 text-3xl font-bold text-center"><%= @post.full_title %></h1>
       <h4 class="text-sm text-center text-gray-500"><%= l(@post.created_at.to_date, locale: :uk) %></h4>
+      <%= render partial: "votes/post_vote", locals: { post: @post } %>
       <% if @post.post_type == "link" || @post.post_type == "project" %>
         <h2 class="!mb-0 !mt-0 text-xl font-bold">
           <span>👉</span><%= link_to @post.link, @post.link.html_safe, class: "link" %></h2>
