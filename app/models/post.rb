@@ -81,6 +81,10 @@ class Post < ApplicationRecord
     state == "pending"
   end
 
+  def is_private?
+    !is_public?
+  end
+
   def publish_or_send_to_review
     # if post was rejected, send it to review
     # if post was in draft, send it to review

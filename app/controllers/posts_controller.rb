@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.with_rich_text_content_and_embeds.find(params[:id])
-    if Current.user && (can? :read, @post)
+    if (Current.user && (can? :read, @post) && @post.private?) || @post.is_public?
       @comments = @post.replies
     else
       render :show_external
@@ -79,6 +79,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.expect!(post: [:content, :title, :post_type, :link])
+    params.expect!(post: [:content, :title, :post_type, :link, :is_public])
   end
 end

@@ -15,16 +15,16 @@ class AccessPolicy
     # The most important role should be at the top.
     # In this case an administrator.
     #
-    role :admin, proc { |user| user.admin? } do
+    role :admin, proc { |user| user&.admin? } do
       can :destroy, User
     end
 
-    role :moderator, proc { |user| user.moderator? } do
+    role :moderator, proc { |user| user&.moderator? } do
       can :approve, Post
       can :reject, Post
     end
 
-    role :member, proc { |user| user.member? } do
+    role :member, proc { |user| user&.member? } do
       can :read, Post
       can :create, Post
       can :create, Comment
@@ -39,7 +39,7 @@ class AccessPolicy
       can [:create, :destroy], Vote
     end
 
-    role :newcomer, proc { |user| user.newcomer? } do
+    role :newcomer, proc { |user| user&.newcomer? } do
       can :create, Intro
       can [:update, :read], Post do |post, user|
         post.user == user
