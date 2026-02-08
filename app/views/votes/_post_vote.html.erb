@@ -1,5 +1,5 @@
 <div id="<%= dom_id(post) %>_votes" class="flex justify-center items-center space-x-2">
-  <span class="text-lg font-bold"><%= post.votes_count %></span>
+  <div class="badge badge-neutral badge-outline text-xl min-w-[2rem]  min-h-[2rem] aspect-square flex items-center justify-center p-3"><%= post.votes_count %></div>
   <% if Current.user && Current.user.id != post.user.id %>
     <% if Current.user.voted_for?(post) %>
       <%= button_to vote_path(votable_id: post.id, votable_type: post.class.to_s),
