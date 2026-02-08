@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.with_rich_text_content_and_embeds.find(params[:id])
-    if (Current.user && (can? :read, @post) && @post.private?) || @post.is_public?
+    if (Current.user && (can? :read, @post) && @post.private?) || @post.public?
       @comments = @post.replies
     else
       render :show_external

@@ -81,8 +81,12 @@ class Post < ApplicationRecord
     state == "pending"
   end
 
-  def is_private?
+  def private?
     !is_public?
+  end
+
+  def public?
+    is_public?
   end
 
   def publish_or_send_to_review
