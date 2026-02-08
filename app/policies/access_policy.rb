@@ -36,6 +36,7 @@ class AccessPolicy
         comment.user == user
       end
       can :create, Intro
+      can [:create, :destroy], Vote
     end
 
     role :newcomer, proc { |user| user.newcomer? } do

@@ -1,0 +1,17 @@
+<div id="<%= dom_id(comment) %>_votes" class="flex justify-end space-x-2">
+  <span class="font-bold"><%= comment.votes_count %></span>
+  <% if Current.user && Current.user.id != comment.user.id %>
+    <% if Current.user.voted_for?(comment) %>
+      <%= button_to vote_path(votable_id: comment.id, votable_type: comment.class.to_s),
+                    method: :delete,
+                    data: { turbo_method: :delete },
+                    class: "btn btn-xs" do %>
+        <span>▼</span>
+      <% end %>
+    <% else %>
+      <%= button_to votes_path(votable_id: comment.id), class: "btn btn-xs" do %>
+        <span>▲</span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

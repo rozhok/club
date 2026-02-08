@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy, inverse_of: :post
   has_rich_text :content
   has_one_attached :og_image_blob
+  has_many :votes, as: :votable, dependent: :destroy
 
   validates :title, presence: true
   validates :content, presence: true

@@ -1,0 +1,9 @@
+<% if @votable.present? %>
+  <%= turbo_stream.replace "#{dom_id(@votable)}_votes" do %>
+    <% if @votable.is_a?(Post) %>
+      <%= render "votes/post_vote", post: @votable %>
+    <% else %>
+      <%= render "votes/comment_vote", comment: @votable %>
+    <% end %>
+  <% end %>
+<% end %>

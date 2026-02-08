@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   has_one_attached :avatar
   has_rich_text :contacts
-  has_many :posts, dependent: :destroy
-
   has_many :sessions, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 
   generates_token_for :magic_link, expires_in: 15.minutes
 
@@ -17,6 +18,27 @@ class User < ApplicationRecord
 
   def approve
     update(role: "member")
+  end
+
+  def cast_vote(votable_id)
+    votable = Comment.find(votable_id) || Post.find(votable_id)
+    if votable.present? && votable.user_id != id
+      votes.create(votable: votable)
+      votable
+    end
+  end
+
+  def retract_vote(votable_id:, votable_type:)
+    vote = Vote.find_by(votable_id: votable_id, votable_type: votable_type)
+    votable = vote.votable
+    if vote.present?
+      vote.destroy
+      votable
+    end
+  end
+
+  def voted_for?(votable)
+    votes.exists?(votable: votable)
   end
 
   # TODO: can it be simplified?

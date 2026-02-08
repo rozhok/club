@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :votes, only: [:create]
+  delete :vote, to: 'votes#destroy'
+
   resources :intros, only: [:new, :create, :update]
   resources :users, only: [:show, :update]
 
