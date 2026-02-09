@@ -8,4 +8,11 @@
     <span>|</span>
     <a class="link link-hover">Політика конфіденційності</a>
   </div>
+
+  <label class="flex cursor-pointer gap-2">
+    <%= inline_svg_tag "icons/theme-light.svg" %>
+    <input type="checkbox" value="dark" class="toggle theme-controller" data-theme-target="toggle" data-controller="theme" data-action="change->theme#toggle"/>
+    <%= inline_svg_tag "icons/theme-dark.svg" %>
+  </label>
+
 </footer>

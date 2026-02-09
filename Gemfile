@@ -19,14 +19,21 @@ gem "bootsnap", require: false
 
 gem "image_processing"
 
+# ActionStorage adapter
+gem "aws-sdk-s3"
+
+# SVG management
+gem "inline_svg"
+
+# Permissions
 gem "access-granted"
 
 # gem "lexxy", "~> 0.1.4.beta"
 
+# transactional emails
 gem "mailgun-ruby"
 
-gem "aws-sdk-s3"
-
+# Sentry
 gem "sentry-ruby"
 gem "sentry-rails"
 
