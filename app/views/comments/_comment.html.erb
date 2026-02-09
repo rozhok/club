@@ -15,23 +15,33 @@
         <h3 class="card-title text-sm">
           <span><%= link_to comment.user.name, user_path(comment.user) %></span><span class="text-gray-500 font-light"><%= comment.user.title %></span>
         </h3>
-        <%= render partial: "votes/comment_vote", locals: { comment: comment} %>
+        <% if comment.deleted_at.nil? %>
+          <%= render partial: "votes/comment_vote", locals: { comment: comment } %>
+        <% end %>
       </div>
       <h4 class="text-sm text-gray-500"><%= link_to l(comment.created_at, locale: :uk), post_path(comment.post, anchor: "comment-#{comment.id}") %></h4>
       <div class="prose text-black !max-w-none">
-        <%= comment.content %>
+        <% if comment.deleted_at.present? %>
+          <%= content_for_deleted_comment(comment) %>
+        <% else %>
+          <%= comment.content %>
+        <% end %>
       </div>
       <div class="card-actions justify-end">
-        <% if can? :update, comment %>
-          <%= link_to edit_post_comment_path(post_id: comment.post_id, id: comment.id), class: "btn btn-sm btn-neutral btn-outline" do %>
-            <span>📝</span><span>Редагувати</span>
+        <% if comment.deleted_at.nil? %>
+          <% if can? :update, comment %>
+            <%= link_to edit_post_comment_path(post_id: comment.post_id, id: comment.id), class: "btn btn-sm btn-neutral btn-outline" do %>
+              <span>📝</span><span>Редагувати</span>
+            <% end %>
           <% end %>
-          <%= button_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-sm btn-neutral btn-outline" do %>
-            <span>🗑</span><span>Видалити</span>
+          <% if can? :destroy, comment %>
+            <%= button_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-sm btn-neutral btn-outline" do %>
+              <span>🗑</span><span>Видалити</span>
+            <% end %>
           <% end %>
-        <% end %>
-        <%= link_to new_post_comment_path(parent_id: comment.id, post_id: comment.post.id), data: { turbo_frame: "comment_#{comment.id}_reply" }, class: "btn btn-sm btn-neutral btn-outline" do %>
-          <span>💬</span><span>Відповісти</span>
+          <%= link_to new_post_comment_path(parent_id: comment.id, post_id: comment.post.id), data: { turbo_frame: "comment_#{comment.id}_reply" }, class: "btn btn-sm btn-neutral btn-outline" do %>
+            <span>💬</span><span>Відповісти</span>
+          <% end %>
         <% end %>
       </div>
     </div>

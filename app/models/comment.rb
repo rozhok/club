@@ -7,6 +7,16 @@ class Comment < ApplicationRecord
 
   has_rich_text :content
 
+  def safe_delete(deletee)
+    if user_id == deletee.id
+      update(deleted_at: Time.current, deleted_by: "comment_author")
+    elsif post.user_id == deletee.id
+      update(deleted_at: Time.current, deleted_by: "post_author")
+    elsif deletee.moderator? || deletee.admin?
+      update(deleted_at: Time.current, deleted_by: "moderator")
+    end
+  end
+
   def padding
     case level
     when 1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_08_042702) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_09_015345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -59,6 +59,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_08_042702) do
 
   create_table "comments", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.integer "level", default: 1
     t.bigint "parent_id"
     t.bigint "post_id", null: false
@@ -73,6 +75,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_08_042702) do
   create_table "posts", force: :cascade do |t|
     t.integer "comments_count", default: 0
     t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.string "deleted_by"
     t.boolean "is_public", default: false
     t.string "link", default: ""
     t.string "og_image"

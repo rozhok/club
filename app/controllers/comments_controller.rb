@@ -45,11 +45,15 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     authorize! :destroy, @comment
-    @comment.destroy
+    @comment.safe_delete(Current.user)
   end
 
   def reply
     authorize! :create, Comment
+    if @comment.deleted_at.present?
+      redirect_to post_path(@comment.post), alert: "Failed to add reply."
+      return
+    end
     @reply = @comment.replies.new(comment_params)
     @reply.level = @comment.level + 1
     @reply.post = @comment.post

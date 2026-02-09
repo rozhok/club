@@ -22,6 +22,7 @@ class AccessPolicy
     role :moderator, proc { |user| user&.moderator? } do
       can :approve, Post
       can :reject, Post
+      can :destroy, Comment
     end
 
     role :member, proc { |user| user&.member? } do
@@ -33,7 +34,10 @@ class AccessPolicy
         post.user == user
       end
       can :update, Comment do |comment, user|
-        comment.user == user
+        comment.user == user && comment.deleted_at.nil?
+      end
+      can :destroy, Comment do |comment, user|
+        comment.user == user || comment.post.user == user
       end
       can :create, Intro
       can [:create, :destroy], Vote

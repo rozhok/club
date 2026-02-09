@@ -1,1 +1,3 @@
-<%= turbo_stream.remove dom_id(@comment) %>
+<%= turbo_stream.replace @comment do %>
+  <%= render @comment %>
+<% end %>
