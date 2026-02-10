@@ -2,7 +2,7 @@
   <% if @parent_id.present? %>
     <%= f.hidden_field :parent_id, value: @parent_id %>
   <% end %>
-  <div class="card card-border shadow-sm light:text-black dark:text-base-content mt-4">
+  <div class="card card-border shadow-sm mt-4">
     <div class="card-body pb-2 pr-6">
       <% if @parent_id.present? %>
         <%= rhino_editor_for(f, :content, id: "post_#{post.id}_comment_#{@parent_id}_reply") %>

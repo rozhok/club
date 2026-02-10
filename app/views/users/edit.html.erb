@@ -1,11 +1,11 @@
 <div class="container mx-auto w-7/8 lg:w-3xl space-y-4">
   <% if @user.newcomer? %>
-    <article class="prose lg:prose-lg light:text-black dark:text-base-content">
+    <article class="prose lg:prose-lg">
       Заповни інформацію про себе — контакти, посаду
     </article>
   <% end %>
   <%= form_with model: @user do |f| %>
-    <div class="card card-border shadow-sm light:text-black dark:text-base-content">
+    <div class="card card-border shadow-sm">
       <div class="card-body">
         <fieldset class="fieldset">
           <legend class="fieldset-legend sm:text-lg">Юзернейм</legend>

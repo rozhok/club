@@ -3,7 +3,7 @@
 <% content_for(:og_description) {@post.og_description} %>
 <div class="container mx-auto w-7/8 lg:w-3xl">
   <div class="card card-border shadow-sm mb-8">
-    <div class="card-body prose lg:prose-xl light:text-black dark:text-base-content !max-w-none">
+    <div class="card-body prose lg:prose-xl !max-w-none">
       <% case @post.state %>
       <% when "pending" %>
         <div role="alert" class="alert alert-warning">
@@ -17,7 +17,7 @@
         </div>
       <% end %>
       <h1 class="!mb-0 text-2xl lg:text-3xl font-bold text-center"><%= @post.full_title %></h1>
-      <h3 class="text-md lg:text-xl text-center light:text-gray-700 dark:text-gray-400 mt-0 not-prose">
+      <h3 class="text-md lg:text-xl text-center mt-0 not-prose">
         <% if @post.is_public? %>
           <span>🌎</span><span>Публічний пост</span>
         <% else %>

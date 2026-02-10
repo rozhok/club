@@ -20,7 +20,7 @@
         <% end %>
       </div>
       <h4 class="text-sm text-gray-500"><%= link_to l(comment.created_at, locale: :uk), post_path(comment.post, anchor: "comment-#{comment.id}") %></h4>
-      <div class="prose lg:prose-lg light:text-black dark:text-base-content !max-w-none">
+      <div class="prose lg:prose-lg !max-w-none">
         <% if comment.deleted_at.present? %>
           <%= content_for_deleted_comment(comment) %>
         <% else %>

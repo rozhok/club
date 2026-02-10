@@ -1,6 +1,6 @@
 <div class="container mx-auto px-4 py-4 max-w-3/4">
   <%= form_with model: @post, url: intros_path do |f| %>
-    <div class="card card-border shadow-sm light:text-black dark:text-base-content">
+    <div class="card card-border shadow-sm">
       <div class="card-body">
         <div class="<%= @post.errors[:content].any? ? 'border-2 border-error rounded-lg' : '' %>">
           <%= rhino_editor_for(f, :content) %>
