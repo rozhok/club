@@ -13,3 +13,9 @@
 @plugin "./daisyui.mjs" {
     themes: light --default, dark --prefersdark;
 }
+
+@plugin "./daisyui-theme.mjs" {
+    name: "light";
+    default: true;
+    --color-base-content: black;
+}
