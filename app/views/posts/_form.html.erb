@@ -33,12 +33,12 @@
         <fieldset class="fieldset">
           <div class="flex gap-4">
             <label class="flex items-center gap-2 cursor-pointer">
-              <%= f.radio_button :is_public, true, class: "radio radio-primary" %>
+              <%= f.radio_button :is_public, true, class: "radio" %>
               <span class="label-text">🌎</span>
               <span class="label-text">Публічний — будь-хто зможе прочитати пост за посиланням</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <%= f.radio_button :is_public, false, class: "radio radio-primary" %>
+              <%= f.radio_button :is_public, false, class: "radio" %>
               <span class="label-text">🔐</span>
               <span class="label-text">Приватний — доступний тільки для учасників Клубу</span>
             </label>
