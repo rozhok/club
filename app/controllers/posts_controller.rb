@@ -3,16 +3,21 @@ class PostsController < ApplicationController
   before_action :authenticate_for_external, only: :show
   def index
     authorize! :read, Post.new
-    @posts = Post.where(state: ["approved"]).includes(user: { avatar_attachment: :blob }).order(updated_at: :desc)
+    @posts = Post.where(state: ["approved"])
+                 .includes(user: { avatar_attachment: { blob: :variant_records } })
+                 .order(updated_at: :desc)
     if current_user.moderator?
       @posts = @posts.or(Post.where(state: "pending"))
     end
   end
 
   def show
-    @post = Post.with_rich_text_content_and_embeds.find(params[:id])
+    @post = Post.includes(user: { avatar_attachment: { blob: :variant_records } })
+                .with_rich_text_content_and_embeds
+                .find(params[:id])
     if (Current.user && (can? :read, @post) && @post.private?) || @post.public?
       @comments = @post.replies
+      @votes_cache = Current.user.votes_cache(@comments.map(&:id))
     else
       render :show_external
     end

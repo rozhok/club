@@ -13,7 +13,9 @@ class Post < ApplicationRecord
   # rubocop:enable Style/WordArray
 
   def replies
-    post_comments = comments.includes(user: { avatar_attachment: :blob }).order(:id).with_rich_text_content_and_embeds
+    post_comments = comments.includes(user: { avatar_attachment: { blob: :variant_records } })
+                            .order(:id)
+                            .with_rich_text_content_and_embeds
     parent_to_children = {}
     post_comments.each do |comment|
       if comment.parent_id.present?

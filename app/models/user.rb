@@ -37,6 +37,10 @@ class User < ApplicationRecord
     end
   end
 
+  def votes_cache(votable_ids)
+    @votes_cache ||= Vote.where(user_id: id, votable_id: votable_ids).pluck(:votable_id)
+  end
+
   def voted_for?(votable)
     votes.exists?(votable: votable)
   end

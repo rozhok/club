@@ -1,7 +1,7 @@
 <div id="<%= dom_id(comment) %>_votes" class="flex items-center justify-end space-x-2">
   <span class="font-bold"><%= comment.votes_count %></span>
   <% if Current.user && Current.user.id != comment.user.id %>
-    <% if Current.user.voted_for?(comment) %>
+    <% if comment.id.in?(@votes_cache) %>
       <%= button_to vote_path(votable_id: comment.id, votable_type: comment.class.to_s),
                     method: :delete,
                     data: { turbo_method: :delete },
