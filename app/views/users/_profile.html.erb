@@ -1,4 +1,4 @@
-<div class="card card-border shadow-sm mb-8 <%= !current_page?(profile_path) ? "shadow-neutral-content bg-neutral-content" : "" %>">
+<div class="card card-border shadow-sm mb-8 <%= !current_page?(profile_path) ? "light:shadow-neutral-content light:bg-neutral-content" : "" %>">
   <div class="card-body">
     <div class="flex flex-row gap-4">
 
@@ -34,7 +34,7 @@
               </h3>
             </li>
             <li>
-              <div class="prose prose-m text-black !max-w-none [&_p]:my-0">
+              <div class="prose prose-m light:text-black dark:text-base-content !max-w-none [&_p]:my-0">
                 <%= user.contacts %>
               </div>
             </li>
@@ -45,7 +45,7 @@
   </div>
   <% if current_page?(profile_path) %>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
-      <%= link_to profile_edit_path, class: "btn btn-sm btn-neutral btn-outline" do %>
+      <%= link_to profile_edit_path, class: "btn btn-sm btn-outline" do %>
         <span>📝</span><span>Редагувати</span>
       <% end %>
       <%= link_to sign_out_path, data: { turbo_method: :delete }, class: "btn btn-sm btn-error btn-outline" do %>

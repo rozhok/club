@@ -8,20 +8,20 @@
     <ul class="menu menu-horizontal hidden sm:flex space-x-2">
       <% if Current.user.present? %>
         <li>
-          <%= link_to profile_path, class: "btn btn-neutral btn-outline" do %>
+          <%= link_to profile_path, class: "btn btn-outline" do %>
             <span>👤</span><span>Профіль</span>
           <% end %>
         </li>
         <li>
           <% if can? :create, Post %>
-            <%= link_to new_post_path, class: "btn btn-neutral btn-outline" do %>
+            <%= link_to new_post_path, class: "btn btn-outline" do %>
               <span>✍️</span><span>Написати</span>
             <% end %>
           <% end %>
         </li>
       <% else %>
         <% if !current_page?(sign_in_path) && !current_page?(sign_up_path) %>
-          <li><%= link_to "Вхід", sign_in_path, class: "btn btn-neutral btn-outline" %></li>
+          <li><%= link_to "Вхід", sign_in_path, class: "btn btn-outline" %></li>
         <% end %>
       <% end %>
     </ul>

@@ -1,11 +1,11 @@
 <div class="container mx-auto w-7/8 space-y-4">
   <% if @user.newcomer? %>
-    <article class="prose text-black">
+    <article class="prose light:text-black dark:text-base-content">
       Заповни інформацію про себе — контакти, посаду
     </article>
   <% end %>
   <%= form_with model: @user do |f| %>
-    <div class="card card-border shadow-sm text-black">
+    <div class="card card-border shadow-sm light:text-black dark:text-base-content">
       <div class="card-body">
         <fieldset class="fieldset">
           <legend class="fieldset-legend text-l">Юзернейм</legend>
@@ -49,10 +49,10 @@
         </fieldset>
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
-        <%= f.button type: "submit", class: "btn btn-sm btn-neutral btn-outline" do %>
+        <%= f.button type: "submit", class: "btn btn-sm btn-outline" do %>
           <span>✅</span><span>Зберегти</span>
         <% end %>
-        <%= link_to :back, class: "btn btn-sm btn-neutral btn-outline" do %>
+        <%= link_to :back, class: "btn btn-sm btn-outline" do %>
           <span>❌</span><span>Скасувати</span>
         <% end %>
       </div>

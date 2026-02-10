@@ -14,10 +14,10 @@
     <div class="card-body">
       <div class="flex justify-between items-center">
         <h2 class="card-title text-xl"><%= link_to post.full_title, post_path(post), class: "after:absolute after:inset-0" %></h2>
-        <div class="badge badge-neutral badge-outline text-xl min-w-[2rem]  min-h-[2rem] aspect-square flex items-center justify-center p-3"><%= post.votes_count %></div>
+        <div class="badge badge-outline text-xl min-w-[2rem]  min-h-[2rem] aspect-square flex items-center justify-center p-3"><%= post.votes_count %></div>
       </div>
       <% if post.draft? %>
-        <div class="badge badge-neutral badge-outline">Чернетка</div>
+        <div class="badge badge-outline">Чернетка</div>
       <% elsif post.rejected? %>
         <div class="badge badge-outline badge-error">Потрібно допрацювати</div>
       <% elsif post.pending? %>
