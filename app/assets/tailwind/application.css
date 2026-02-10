@@ -19,3 +19,5 @@
     default: true;
     --color-base-content: black;
 }
+
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));

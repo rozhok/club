@@ -3,7 +3,7 @@
 <% content_for(:og_description) {@post.og_description} %>
 <div class="container mx-auto w-7/8 lg:w-3xl">
   <div class="card card-border shadow-sm mb-8">
-    <div class="card-body prose lg:prose-xl !max-w-none">
+    <div class="card-body prose lg:prose-xl text-black dark:text-white !max-w-none">
       <% case @post.state %>
       <% when "pending" %>
         <div role="alert" class="alert alert-warning">
