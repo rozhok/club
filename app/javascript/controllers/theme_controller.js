@@ -1,30 +1,31 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "toggle" ]
+  static targets = [ "toggle" ];
 
   connect() {
-    const savedTheme = localStorage.getItem("theme") || "light"
-    const theme = savedTheme || this.getSystemTheme()
+    const savedTheme = localStorage.getItem("theme") || "light";
+    const theme = savedTheme || this.getSystemTheme();
 
-    this.applyTheme(theme)
+    this.applyTheme(theme);
 
-    this.toggleTarget.checked = (theme === "dark")
+    this.toggleTarget.checked = (theme === "dark");
   }
 
   toggle(event) {
     const theme = event.target.checked ? "dark" : "light"
-    this.applyTheme(theme)
+    this.applyTheme(theme);
   }
 
   applyTheme(theme) {
-    localStorage.setItem("theme", theme)
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }
 
   getSystemTheme() {
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark"
+      return "dark";
     }
-    return "light"
+    return "light";
   }
 }
