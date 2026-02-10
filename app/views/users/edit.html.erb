@@ -1,6 +1,6 @@
-<div class="container mx-auto w-7/8 space-y-4">
+<div class="container mx-auto w-7/8 lg:w-3xl space-y-4">
   <% if @user.newcomer? %>
-    <article class="prose light:text-black dark:text-base-content">
+    <article class="prose lg:prose-lg light:text-black dark:text-base-content">
       Заповни інформацію про себе — контакти, посаду
     </article>
   <% end %>
@@ -8,35 +8,35 @@
     <div class="card card-border shadow-sm light:text-black dark:text-base-content">
       <div class="card-body">
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Юзернейм</legend>
-          <%= f.text_field :username, class: "w-full min-w-full input input-l" %>
+          <legend class="fieldset-legend sm:text-lg">Юзернейм</legend>
+          <%= f.text_field :username, class: "w-full min-w-full input lg:input-lg" %>
           <p class="label">rozhok</p>
         </fieldset>
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Ім'я</legend>
-          <%= f.text_field :name, class: "w-full min-w-full input input-l" %>
+          <legend class="fieldset-legend sm:text-lg">Ім'я</legend>
+          <%= f.text_field :name, class: "w-full min-w-full input lg:input-lg" %>
           <p class="label">Як вас звати</p>
         </fieldset>
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Посада</legend>
-          <%= f.text_field :title, class: "w-full min-w-full input input-l" %>
+          <legend class="fieldset-legend sm:text-lg">Посада</legend>
+          <%= f.text_field :title, class: "w-full min-w-full input lg:input-lg" %>
           <p class="label">Ким працюєте?</p>
         </fieldset>
 
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Компанія</legend>
-          <%= f.text_field :company, class: "w-full min-w-full input input-l" %>
+          <legend class="fieldset-legend sm:text-lg">Компанія</legend>
+          <%= f.text_field :company, class: "w-full min-w-full input lg:input-lg" %>
           <p class="label">Де працюєте?</p>
         </fieldset>
 
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Де знаходитесь</legend>
-          <%= f.text_field :location, class: "w-full min-w-full input input-l" %>
+          <legend class="fieldset-legend sm:text-lg">Де знаходитесь</legend>
+          <%= f.text_field :location, class: "w-full min-w-full input lg:input-lg" %>
           <p class="label">Звідки ви?</p>
         </fieldset>
 
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Як з вами зв'язатися</legend>
+          <legend class="fieldset-legend sm:text-lg">Як з вами зв'язатися</legend>
           <div class="overflow-x-auto">
             <%= rhino_editor_for(f, :contacts) %>
           </div>
@@ -44,7 +44,7 @@
         </fieldset>
 
         <fieldset class="fieldset">
-          <legend class="fieldset-legend text-l">Фотографія</legend>
+          <legend class="fieldset-legend sm:text-lg">Фотографія</legend>
           <%= f.file_field :avatar, class: "file-input" %>
         </fieldset>
       </div>

@@ -1,15 +1,15 @@
-<div class="container mx-auto w-7/8">
+<div class="container mx-auto w-7/8 lg:w-3xl">
   <%= form_with model: @post do |f| %>
     <div class="card card-border shadow-sm light:text-black dark:text-base-content">
       <div class="card-body">
 
         <fieldset class="fieldset">
-          <%= f.select :post_type, Post::POST_TYPES, {}, { class: "select" } %>
+          <%= f.select :post_type, Post::POST_TYPES, {}, { class: "select lg:select-lg" } %>
           <span class="label">Тип посту</span>
         </fieldset>
 
         <fieldset class="fieldset">
-          <%= f.text_field :title, class: "w-full min-w-full input input-l #{@post.errors[:title].any? ? 'input-error' : ''}" %>
+          <%= f.text_field :title, class: "w-full min-w-full input lg:input-lg #{@post.errors[:title].any? ? 'input-error' : ''}" %>
           <p class="label <%= @post.errors[:title].any? ? 'text-error' : '' %>">
             <% if @post.errors[:title].any? %>
               <span class="label-text-alt text-error"><%= @post.errors[:title].first %></span>
@@ -20,7 +20,7 @@
         </fieldset>
 
         <fieldset class="fieldset">
-          <%= f.text_field :link, class: "w-full min-w-full input input-l #{@post.errors[:link].any? ? 'input-error' : ''}" %>
+          <%= f.text_field :link, class: "w-full min-w-full input lg:input-lg #{@post.errors[:link].any? ? 'input-error' : ''}" %>
           <p class="label <%= @post.errors[:link].any? ? 'text-error' : '' %>">
             <% if @post.errors[:link].any? %>
               <span class="label-text-alt text-error"><%= @post.errors[:link].first %></span>
@@ -33,12 +33,12 @@
         <fieldset class="fieldset">
           <div class="flex gap-4">
             <label class="flex items-center gap-2 cursor-pointer">
-              <%= f.radio_button :is_public, true, class: "radio" %>
+              <%= f.radio_button :is_public, true, class: "radio lg:radio-lg" %>
               <span class="label-text">🌎</span>
               <span class="label-text">Публічний — будь-хто зможе прочитати пост за посиланням</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <%= f.radio_button :is_public, false, class: "radio" %>
+              <%= f.radio_button :is_public, false, class: "radio lg:radio-lg" %>
               <span class="label-text">🔐</span>
               <span class="label-text">Приватний — доступний тільки для учасників Клубу</span>
             </label>

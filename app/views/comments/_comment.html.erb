@@ -12,7 +12,7 @@
     <% end %>
     <div class="card-body pb-2 pr-6">
       <div class="flex justify-between">
-        <h3 class="card-title text-sm">
+        <h3 class="card-title text-sm lg:text-lg">
           <span><%= link_to comment.user.name, user_path(comment.user) %></span><span class="text-gray-500 font-light"><%= comment.user.title %></span>
         </h3>
         <% if comment.deleted_at.nil? %>
@@ -20,7 +20,7 @@
         <% end %>
       </div>
       <h4 class="text-sm text-gray-500"><%= link_to l(comment.created_at, locale: :uk), post_path(comment.post, anchor: "comment-#{comment.id}") %></h4>
-      <div class="prose light:text-black dark:text-base-content !max-w-none">
+      <div class="prose lg:prose-lg light:text-black dark:text-base-content !max-w-none">
         <% if comment.deleted_at.present? %>
           <%= content_for_deleted_comment(comment) %>
         <% else %>
