@@ -45,10 +45,10 @@
   </div>
   <% if current_page?(profile_path) %>
     <div class="card-actions justify-end p-4 pt-0 pr-6">
-      <%= link_to profile_edit_path, class: "btn btn-sm btn-outline" do %>
+      <%= link_to profile_edit_path, class: "btn btn-sm lg:btn-md btn-outline" do %>
         <span>📝</span><span>Редагувати</span>
       <% end %>
-      <%= link_to sign_out_path, data: { turbo_method: :delete }, class: "btn btn-sm btn-error btn-outline" do %>
+      <%= link_to sign_out_path, data: { turbo_method: :delete }, class: "btn btn-sm lg:btn-md btn-error btn-outline" do %>
         <span>👋</span><span>Вийти</span>
       <% end %>
     </div>

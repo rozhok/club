@@ -30,16 +30,16 @@
       <div class="card-actions justify-end">
         <% if comment.deleted_at.nil? %>
           <% if can? :update, comment %>
-            <%= link_to edit_post_comment_path(post_id: comment.post_id, id: comment.id), class: "btn btn-sm btn-outline" do %>
+            <%= link_to edit_post_comment_path(post_id: comment.post_id, id: comment.id), class: "btn btn-sm lg:btn-md btn-outline" do %>
               <span>📝</span><span>Редагувати</span>
             <% end %>
           <% end %>
           <% if can? :destroy, comment %>
-            <%= button_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-sm btn-outline" do %>
+            <%= button_to post_comment_path(post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-sm lg:btn-md btn-outline" do %>
               <span>🗑</span><span>Видалити</span>
             <% end %>
           <% end %>
-          <%= link_to new_post_comment_path(parent_id: comment.id, post_id: comment.post.id), data: { turbo_frame: "comment_#{comment.id}_reply" }, class: "btn btn-sm btn-outline" do %>
+          <%= link_to new_post_comment_path(parent_id: comment.id, post_id: comment.post.id), data: { turbo_frame: "comment_#{comment.id}_reply" }, class: "btn btn-sm lg:btn-md btn-outline" do %>
             <span>💬</span><span>Відповісти</span>
           <% end %>
         <% end %>
