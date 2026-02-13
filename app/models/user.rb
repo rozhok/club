@@ -45,17 +45,16 @@ class User < ApplicationRecord
     votes.exists?(votable: votable)
   end
 
-  # TODO: can it be simplified?
   def newcomer?
     role == "newcomer"
   end
 
   def member?
-    role == "member" || moderator? || admin?
+    role == "member"
   end
 
   def moderator?
-    role == "moderator" || admin?
+    role == "moderator"
   end
 
   def admin?

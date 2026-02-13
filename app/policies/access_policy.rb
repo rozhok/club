@@ -2,45 +2,34 @@ class AccessPolicy
   include AccessGranted::Policy
 
   def configure
-    # Example policy for AccessGranted.
-    # For more details check the README at
-    #
-    # https://github.com/chaps-io/access-granted/blob/master/README.md
-    #
-    # Roles inherit from less important roles, so:
-    # - :admin has permissions defined in :member, :guest and himself
-    # - :member has permissions from :guest and himself
-    # - :guest has only its own permissions since it's the first role.
-    #
-    # The most important role should be at the top.
-    # In this case an administrator.
-    #
     role :admin, proc { |user| user&.admin? } do
-      can :destroy, User
+      can :manage, User
     end
 
-    role :moderator, proc { |user| user&.moderator? } do
-      can :approve, Post
-      can :reject, Post
+    role :moderator, proc { |user| user&.role.in?(%w[member moderator admin]) } do
+      can [:approve, :reject], Post
       can :destroy, Comment
     end
 
-    role :member, proc { |user| user&.member? } do
-      can :read, Post
-      can :create, Post
-      can :create, Comment
-      can :read, Comment
+    role :member, proc { |user| user&.role.in?(%w[member moderator admin]) } do
+      can :create, Intro
+
+      can [:create, :read], Post
       can [:update, :destroy], Post do |post, user|
         post.user == user
       end
+
+      can [:create, :read], Comment
       can :update, Comment do |comment, user|
         comment.user == user && comment.deleted_at.nil?
       end
       can :destroy, Comment do |comment, user|
         comment.user == user || comment.post.user == user
       end
-      can :create, Intro
+
       can [:create, :destroy], Vote
+
+      can :read, User
     end
 
     role :newcomer, proc { |user| user&.newcomer? } do

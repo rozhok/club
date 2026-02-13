@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+    authorize! :read, User
     if params[:id].present?
       @user = User.find(params[:id])
     else
