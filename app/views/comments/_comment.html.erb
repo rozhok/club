@@ -1,6 +1,6 @@
 <%= turbo_frame_tag comment do %>
   <div class="card card-lg card-border shadow-sm mt-4 <%= comment.padding %>" id="<%= "comment-#{comment.id}" %>">
-    <%= link_to user_path(comment.user) do %>
+    <%= link_to user_path(comment.user), "data-turbo": false do %>
       <div class="avatar absolute -left-6 top-1/2 transform -translate-y-1/2">
         <div class="w-12 rounded-full">
           <% if comment.user.avatar.attached? %>
@@ -13,7 +13,7 @@
     <div class="card-body pb-2 pr-6">
       <div class="flex justify-between">
         <h3 class="card-title text-sm lg:text-lg">
-          <span><%= link_to comment.user.name, user_path(comment.user) %></span><span class="text-gray-500 font-light"><%= comment.user.title %></span>
+          <span><%= link_to comment.user.name, user_path(comment.user), "data-turbo": false %></span><span class="text-gray-500 font-light"><%= comment.user.title %></span>
         </h3>
         <% if comment.deleted_at.nil? %>
           <%= render partial: "votes/comment_vote", locals: { comment: comment } %>
