@@ -12,8 +12,8 @@ class User < ApplicationRecord
 
   normalizes :email, with: -> { it.strip.downcase }
 
-  def empty_intro?
-    posts.where(post_type: :intro).order(:id).first.nil?
+  def intro
+    posts.where(post_type: :intro).first
   end
 
   def approve

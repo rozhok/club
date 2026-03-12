@@ -1,18 +1,18 @@
 <div class="container mx-auto px-4 py-4 max-w-3/4">
-  <%= form_with model: @post, url: intros_path do |f| %>
+  <%= form_with model: @intro do |f| %>
     <div class="card card-border shadow-sm">
       <div class="card-body">
-        <div class="<%= @post.errors[:content].any? ? 'border-2 border-error rounded-lg' : '' %>">
+        <div class="<%= @intro.errors[:content].any? ? 'border-2 border-error rounded-lg' : '' %>">
           <%= rhino_editor_for(f, :content) %>
         </div>
-        <% if @post.errors[:content].any? %>
+        <% if @intro.errors[:content].any? %>
           <p class="label text-error mt-2">
-            <span class="label-text-alt text-error"><%= @post.errors[:content].first %></span>
+            <span class="label-text-alt text-error"><%= @intro.errors[:content].first %></span>
           </p>
         <% end %>
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
-        <% if @post.created_at %>
+        <% if @intro.created_at %>
           <%= f.button type: "submit", class: "btn btn-outline" do %>
             <span>✅</span><span>Зберегти</span>
           <% end %>

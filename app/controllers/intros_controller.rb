@@ -1,46 +1,47 @@
 class IntrosController < ApplicationController
   def new
     authorize! :create, Intro
-    if current_user.newcomer?
-      @post = Post.new(title: "Інтро: #{Current.user.name}")
+    if current_user.intro.present?
+      redirect_to post_path(current_user.intro)
     else
-      redirect_to root_path
+      @intro = Post.new(title: "Інтро: #{Current.user.name}")
     end
   end
 
   def edit
-    @post = Post.find(params[:id])
-    authorize! :update, @post
+    @intro = Post.find(params[:id])
+    authorize! :update, @intro
   end
 
   def create
     authorize! :create, Intro
-    if !current_user.newcomer?
+    if current_user.intro.present?
       redirect_to root_path
       return
     end
-    @post = Post.new(post_params)
-    @post.post_type = "intro"
-    @post.title = "Інтро: #{Current.user.name}"
-    @post.user_id = Current.user.id
-    if @post.save
-      redirect_to post_path(@post.id)
+    @intro = Post.new(post_params)
+    @intro.post_type = "intro"
+    @intro.title = "Інтро: #{Current.user.name}"
+    @intro.user_id = Current.user.id
+    @intro.state = :pending
+    if @intro.save
+      redirect_to post_path(@intro.id)
     else
       render :new, status: :unprocessable_content
     end
   end
 
   def update
-    @post = Post.find(params[:id])
-    authorize! :update, @post
-    if @post.update(post_params)
-      redirect_to post_path(@post.id)
+    @intro = Post.find(params[:id])
+    authorize! :update, @intro
+    if @intro.update(post_params)
+      redirect_to post_path(@intro.id)
     else
       render :edit, status: :unprocessable_content
     end
   end
 
   def post_params
-    params.expect!(post: [:content, :title])
+    params.expect!(intro: [:content, :title])
   end
 end

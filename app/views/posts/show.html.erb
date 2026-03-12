@@ -47,8 +47,14 @@
         <% end %>
       <% end %>
       <% if can? :update, @post %>
-        <%= link_to edit_post_path(@post.id), class: "btn btn-sm lg:btn-md btn-outline" do %>
-          <span>📝</span><span>Редагувати</span>
+        <% if @post.intro? %>
+          <%= link_to edit_intro_path(@post.id), class: "btn btn-sm lg:btn-md btn-outline" do %>
+            <span>📝</span><span>Редагувати</span>
+          <% end %>
+        <% else %>
+          <%= link_to edit_post_path(@post.id), class: "btn btn-sm lg:btn-md btn-outline" do %>
+            <span>📝</span><span>Редагувати</span>
+          <% end %>
         <% end %>
       <% end %>
     </div>

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate, only: :show
   before_action :authenticate_for_external, only: :show
+
   def index
     authorize! :read, Post.new
     @posts = Post.where(state: ["approved"])

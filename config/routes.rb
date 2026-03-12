@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   resources :votes, only: [:create]
   delete :vote, to: 'votes#destroy'
 
-  resources :intros, only: [:new, :create, :update]
+  resources :intros, only: [:new, :edit, :create, :update]
   resources :users, only: [:show, :update]
 
   direct :cdn_image do |model|
