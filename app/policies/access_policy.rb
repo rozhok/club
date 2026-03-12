@@ -6,7 +6,7 @@ class AccessPolicy
       can :manage, User
     end
 
-    role :moderator, proc { |user| user&.role.in?(%w[member moderator admin]) } do
+    role :moderator, proc { |user| user&.role.in?(%w[moderator admin]) } do
       can [:approve, :reject], Post
       can :destroy, Comment
     end
