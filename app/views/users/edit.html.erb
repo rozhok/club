@@ -47,6 +47,23 @@
           <legend class="fieldset-legend sm:text-lg">Фотографія</legend>
           <%= f.file_field :avatar, class: "file-input" %>
         </fieldset>
+
+        <fieldset class="fieldset">
+          <legend class="fieldset-legend sm:text-lg">Публічність профілю</legend>
+          <div class="flex gap-4">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <%= f.radio_button :is_public, true, class: "radio lg:radio-lg" %>
+              <span class="label-text">🌎</span>
+              <span class="label-text">Публічний — будь-хто зможе подивитися ваш профіль</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <%= f.radio_button :is_public, false, class: "radio lg:radio-lg" %>
+              <span class="label-text">🔐</span>
+              <span class="label-text">Приватний — доступний тільки для учасників Клубу</span>
+            </label>
+          </div>
+        </fieldset>
+
       </div>
       <div class="card-actions justify-end p-4 pt-0 pr-6">
         <%= f.button type: "submit", class: "btn btn-sm lg:btn-md btn-outline" do %>
