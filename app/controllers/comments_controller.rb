@@ -6,24 +6,24 @@ class CommentsController < ApplicationController
 
   def show
     authorize! :read, Comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params.expect(:id))
   end
 
   def new
     authorize! :create, Comment
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params.expect(:post_id))
     @comment = Comment.new
     @parent_id = params[:parent_id]
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params.expect(:id))
     authorize! :update, @comment
   end
 
   def create
     authorize! :create, Comment
-    @post = Post.find(params[:post_id])
+    @post = Post.find(params.expect(:post_id))
     @post.transaction do
       @comment = @post.comments.create(comment_params)
       @comment.user_id = Current.user.id
@@ -37,13 +37,13 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params.expect(:id))
     authorize! :update, @comment
     @comment.update(comment_params)
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find(params.expect(:id))
     authorize! :destroy, @comment
     @comment.safe_delete(Current.user)
   end

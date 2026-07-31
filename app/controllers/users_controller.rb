@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def show
     authorize! :read, User
     if params[:id].present?
-      @user = User.find(params[:id])
+      @user = User.find(params.expect(:id))
     else
       @user = Current.user
     end

@@ -9,7 +9,7 @@ class IntrosController < ApplicationController
   end
 
   def edit
-    @intro = Post.find(params[:id])
+    @intro = Post.find(params.expect(:id))
     authorize! :update, @intro
   end
 
@@ -32,7 +32,7 @@ class IntrosController < ApplicationController
   end
 
   def update
-    @intro = Post.find(params[:id])
+    @intro = Post.find(params.expect(:id))
     authorize! :update, @intro
     if @intro.update(post_params)
       redirect_to post_path(@intro.id)

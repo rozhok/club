@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.includes(user: { avatar_attachment: { blob: :variant_records } })
                 .with_rich_text_content_and_embeds
-                .find(params[:id])
+                .find(params.expect(:id))
     if (Current.user && (can? :read, @post) && @post.private?) || @post.public?
       @comments = @post.replies
       @votes_cache = Current.user.votes_cache(@comments.map(&:id))
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find(params.expect(:id))
     authorize! :update, @post
   end
 
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find(params.expect(:id))
     authorize! :update, @post
     if @post.update(post_params)
       if params[:publish]
@@ -64,21 +64,21 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = Post.find(params.expect(:id))
     authorize! :destroy, @post
     @post.destroy
     redirect_to posts_path
   end
 
   def approve
-    @post = Post.find(params[:id])
+    @post = Post.find(params.expect(:id))
     authorize! :approve, @post
     @post.approve
     redirect_to post_path(@post)
   end
 
   def reject
-    @post = Post.find(params[:id])
+    @post = Post.find(params.expect(:id))
     authorize! :reject, @post
     @post.reject
     redirect_to post_path(@post)
