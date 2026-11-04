@@ -8,9 +8,8 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  # rubocop:disable Style/WordArray
+  # rubocop:disable-next Style/WordArray
   POST_TYPES = [["Пост", "post"], ["Посилання", "link"], ["Проєкт", "project"], ["Запитання", "question"], ["Путівник", "guide"]].freeze
-  # rubocop:enable Style/WordArray
 
   def replies
     post_comments = comments.includes(user: { avatar_attachment: { blob: :variant_records } })
